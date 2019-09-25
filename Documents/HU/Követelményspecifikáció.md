@@ -68,4 +68,4 @@ Kivitelező: Rendben! Amennyiben a használt technológiákra és eszközökre n
 - bug: fejlesztési hiba, mely miatt a program nem a várt eredményt hozza
 - backend: a rendszer kiszolgálója, ahonnan az alkalmazás elérhető
 - frontend: a rendszerből kijutó adatokat prezentálja, illetve a bejövő adatokat ez fogadja és továbbítja a backend számára
-
+- kliens: a felhasználó által használt program, amellyel az adatmanipuláció elvégezhető
