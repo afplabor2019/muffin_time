@@ -1,8 +1,7 @@
 <?php
 session_start();
+include_once 'classes/Database.php';
+include_once 'classes/Redirect.php';
+include_once 'classes/Session.php';
 
-spl_autoload_register(function($name){
-    if(file_exists("classes/{$name}.php")){
-        require_once "classes/{$name}.php";
-    }
-});
+define('DOMAIN', 'http://localhost/afplabor_final/');
