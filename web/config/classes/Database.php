@@ -1,6 +1,4 @@
 <?php
-namespace MuffinTime\Database;
-
 class Database{
      private $conn;
 
