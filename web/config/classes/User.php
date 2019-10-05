@@ -30,14 +30,14 @@ class User{
             $key = md5(rand(999,99999));
             $expires_at = date("Y-m-d H:i:s",time()+60*60);
 
-            $sql_insert = "INSERT INTO jelszo_helyreallitas VALUES(?, ?, ?)";
+            $sql_insert = "INSERT INTO jelszo_helyreallitas VALUES(:email, :key, :expires)";
             
             $stmt_update = $connection->prepare($sql_insert);
-            $stmt_update->bindParam(1, $userdata["email"]);
-            $stmt_update->bindParam(2, $key);
-            $stmt_update->bindParam(3, $expires_at);
-
-            if($stmt->execute()){
+            $stmt_update->bindParam(':email', $userdata["email"]);
+            $stmt_update->bindParam(':key', $key);
+            $stmt_update->bindParam(':expires', $expires_at);
+            $result = $stmt_update->execute();
+            if($result){
                 Message::success('Üzenet kiküldve a megadott email címre!');
             }else{
                 Message::error('Hiba történt a művelet közben!');
@@ -46,4 +46,5 @@ class User{
 
         return false;
     }
+
 }
