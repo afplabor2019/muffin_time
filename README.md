@@ -12,3 +12,12 @@ After successful login some functions will be available depending on one's permi
 * &gt;= MySQL 5.0.12
 * Google Chrome or Mozilla Firefox  
 
+
+**Installation:**   
+* Copy all files from web directory onto your server   
+* Open *classes/Database.php* for editing, and change the MySQL login data   
+* Import *afplabor_db.sql* into your database   
+
+## Existing users
+**Username:**  root **Password:** root   
+**Username:** demo **Password:** demo  
