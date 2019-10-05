@@ -24,13 +24,42 @@ if($stmt->rowCount() > 0){
     $data = $stmt->fetch(PDO::FETCH_ASSOC);
     $current_time = time();
     $current_timestamp = date('Y-m-d H:i:s', $current_time);
-    if($data["lejar_datum"] < $current_timestamp){
+    if($data["lejar_datum"] > $current_timestamp){
     ?>
+        <?php
+        if(isset($_POST["reset_submit"])){
+            $uj_jelszo = $_POST["uj_jelszo"];
+            $megerosites = $_POST["jelszo_megerosites"];
+
+            if($uj_jelszo == $megerosites){
+                $uj_jelszo_hash = password_hash($uj_jelszo, PASSWORD_DEFAULT);
+                $sql_update = "UPDATE felhasznalok SET jelszo = ?";
+                $stmt_update = $connection->prepare($sql_update);
+                $stmt_update->bindParam(1, $uj_jelszo_hash);
+                $result = $stmt_update->execute();
+                if($result){
+                    $sql_expire = "UPDATE jelszo_helyreallitas SET lejar_datum = ?";
+                    $current_time = time();
+                    $current_timestamp = date('Y-m-d H:i:s', $current_time);
+                    $stmt_expire = $connection->prepare($sql_expire);
+                    $stmt_expire->bindParam(1, $current_timestamp);
+                    $stmt_expire->execute();
+                    sleep(5);
+                    Redirect::to('login');
+                    
+                }else{
+                    Message::error('Sikertelen SQL utasítás!');
+                }
+            }else{
+                Message::error('Nem egyeznek meg a jelszavak!');
+            }
+        }
+        ?>
         <form method="post">
             <label for="uj_jelszo">Új jelszó:</label>
-            <input type="password" name="uj_jelszo"><br>
+            <input type="password" name="uj_jelszo" required><br>
             <label for="jelszo_megerosites">Jelszó megerősítése:</label>
-            <input type="password" name="jelszo_megerosites"><br>
+            <input type="password" name="jelszo_megerosites" required><br>
             <input type="submit" value="Küldés" name="reset_submit">
         </form>
     <?php
