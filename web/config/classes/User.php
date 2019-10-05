@@ -38,7 +38,8 @@ class User{
             $stmt_update->bindParam(':expires', $expires_at);
             $result = $stmt_update->execute();
             if($result){
-                Message::success('Üzenet kiküldve a megadott email címre!');
+                $url = "?p=reset_pass&email={$userdata['email']}&key={$key}";
+                Message::success("Jelszó helyreállító link (1 órán át használható): <a href='{$url}' class='white-link'>Kattints ide</a>");
             }else{
                 Message::error('Hiba történt a művelet közben!');
             }
