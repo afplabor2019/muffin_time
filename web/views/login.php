@@ -38,8 +38,8 @@ if(isset($_POST["login_submit"])){
 
   <!-- Login Form -->
         <form method="post">
-            <input type="text" id="username" name="username" placeholder="username">
-            <input type="password" id="password" name="password" placeholder="password">
+            <input type="text" id="username" name="username" placeholder="username" required>
+            <input type="password" id="password" name="password" placeholder="password" required>
             <input type="submit" value="Log In" name="login_submit">
         </form>
 
