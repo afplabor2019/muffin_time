@@ -99,7 +99,7 @@ class User{
                     Message::error('Ezzel az email címmel már regisztráltak!');
                 }else{
                     $jelszo_hash = password_hash($password1, PASSWORD_DEFAULT);
-                    $insert_user_sql = "INSERT INTO felhasznalok (felhasznalonev, jelszo, email, jogosultsag) VALUES(:felhasznalonev, :jelszo, :email, :jogosultsag)";
+                    $insert_user_sql = "INSERT INTO felhasznalok (felhasznalonev, jelszo, email, jogosultsag, last_login) VALUES(:felhasznalonev, :jelszo, :email, :jogosultsag, NULL)";
                     $insert_user_stmt = $connection->prepare($insert_user_sql);
                     $insert_user_stmt->bindParam(':felhasznalonev', $username);
                     $insert_user_stmt->bindParam(':jelszo', $jelszo_hash);
