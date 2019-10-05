@@ -2,7 +2,8 @@
 <?php include_once "_header.php"; ?>
 <?php
 if(isset($_POST["lost_pass_submit"])){
-    
+    $email = trim(html_entity_decode($_POST["email"]));
+    User::lostPassGenerate($email);
 }
 ?>
 <form method="post">
