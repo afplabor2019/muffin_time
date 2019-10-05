@@ -19,6 +19,13 @@ if(isset($_POST["login_submit"])){
     if($stmt->rowCount() > 0){
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if(password_verify($jelszo, $result["jelszo"])){
+            $update_login_sql = "UPDATE felhasznalok SET last_login = ? WHERE id = ?";
+            $current_time = time();
+            $current_timestamp = date("Y-m-d H:i:s", $current_time);
+            $update_login_stmt = $connection->prepare($update_login_sql);
+            $update_login_stmt->bindParam(1, $current_timestamp);
+            $update_login_stmt->bindParam(2, $result["id"]);
+            $update_login_stmt->execute();
             $_SESSION['userid'] = $result['id'];
             Redirect::to('home');
         }else{
