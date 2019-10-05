@@ -11,26 +11,27 @@ if(Session::isset('userid')){
   
       <!-- Icon -->
             <div>
-                <img src="logo.png" id="icon" alt="Logo" />
+                <img src="img/logo.png" id="icon" alt="Logo" />
             </div>
   
       <!-- Form -->
             <div id="base">Welcome here, <?=$userdata["felhasznalonev"]?>!</div>
             <div>
-                <img src="muffin.png" id="icon" alt="Muffin" />
+                <img src="img/muffin.png" id="icon" alt="Muffin" />
             </div>
             <?php
                 if(User::isAdmin(Session::get('userid'))){
                     $users = User::getAllUser();
             ?>
                 <div>
-                    <table class="table">
+                    <table class="table centered">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Felhasználónév</th>
                                 <th>Email cím</th>
                                 <th>Jogosultság</th>
+                                <th>Utolsó belépés ideje</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,6 +42,7 @@ if(Session::isset('userid')){
                                         echo "<td>{$user['felhasznalonev']}</td>";
                                         echo "<td>{$user['email']}</td>";
                                         echo "<td>{$user['jogosultsag']}</td>";
+                                        echo "<td>{$user['last_login']}</td>";
                                     echo "</tr>";
                                 }
                             ?>
