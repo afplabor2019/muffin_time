@@ -76,4 +76,43 @@ class User{
 
         return $result;
     }
+
+    public static function create($username,$password1,$password2,$email,$role){
+        $db = new Database();
+        $connection = $db->getConnection();
+
+        if($password1 != $password2){
+            Message::error('A két jelszó nem egyezik meg!');
+        }else{
+            $check_username_sql = "SELECT felhasznalonev FROM felhasznalok WHERE felhasznalonev = ?";
+            $check_username_stmt = $connection->prepare($check_username_sql);
+            $check_username_stmt->bindParam(1, $username);
+            $check_username_stmt->execute();
+            if($check_username_stmt->rowCount() > 0){
+                Message::error('Foglalt felhasználónév!');
+            }else{
+                $check_email_sql = "SELECT email FROM felhasznalok WHERE email = ?";
+                $check_email_stmt = $connection->prepare($check_email_sql);
+                $check_email_stmt->bindParam(1, $email);
+                $check_email_stmt->execute();
+                if($check_email_stmt->rowCount() > 0){
+                    Message::error('Ezzel az email címmel már regisztráltak!');
+                }else{
+                    $jelszo_hash = password_hash($password1, PASSWORD_DEFAULT);
+                    $insert_user_sql = "INSERT INTO felhasznalok (felhasznalonev, jelszo, email, jogosultsag) VALUES(:felhasznalonev, :jelszo, :email, :jogosultsag)";
+                    $insert_user_stmt = $connection->prepare($insert_user_sql);
+                    $insert_user_stmt->bindParam(':felhasznalonev', $username);
+                    $insert_user_stmt->bindParam(':jelszo', $jelszo_hash);
+                    $insert_user_stmt->bindParam(':email', $email);
+                    $insert_user_stmt->bindParam(':jogosultsag', $role);
+
+                    if($insert_user_stmt->execute()){
+                        Message::success('Sikeres felhasználó létrehozás!');
+                    }else{
+                        Message::error('Hiba történt a felhasználó létrehozása közben!');
+                    }
+                }
+            }
+        }
+    }
 }
