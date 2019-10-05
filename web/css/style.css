@@ -193,3 +193,9 @@ input[type=password]:placeholder {
 #icon {
   width:60%;
 }
+
+
+/* TABLE */
+table.table.centered{
+  margin: 0 auto;
+}
