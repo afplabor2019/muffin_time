@@ -10,6 +10,7 @@ $key = isset($_GET["key"]) ? $_GET["key"] : '';
 
 if(empty($email) || empty($key)){
     Message::error('Hibás URL');
+    die();
 }
 
 $db = new Database();
