@@ -42,9 +42,9 @@ class User{
             }else{
                 Message::error('Hiba történt a művelet közben!');
             }
+        }else{
+            Message::error('Ilyen email cím nem található az adatbázisban!');
         }
-
-        return false;
     }
 
     public static function isAdmin($userid){
@@ -61,5 +61,18 @@ class User{
             return ($data["jogosultsag"] == "admin") ? true : false;
         }
         return false;
+    }
+
+    public static function getAllUser(){
+        $db = new Database();
+        $connection = $db->getConnection();
+
+        $sql = "SELECT * FROM felhasznalok";
+        $stmt = $connection->prepare($sql);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
     }
 }
