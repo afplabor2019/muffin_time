@@ -33,9 +33,10 @@ if($stmt->rowCount() > 0){
 
             if($uj_jelszo == $megerosites){
                 $uj_jelszo_hash = password_hash($uj_jelszo, PASSWORD_DEFAULT);
-                $sql_update = "UPDATE felhasznalok SET jelszo = ?";
+                $sql_update = "UPDATE felhasznalok SET jelszo = ? WHERE email = ?";
                 $stmt_update = $connection->prepare($sql_update);
                 $stmt_update->bindParam(1, $uj_jelszo_hash);
+                $stmt_update->bindParam(2, $email);
                 $result = $stmt_update->execute();
                 if($result){
                     $sql_expire = "UPDATE jelszo_helyreallitas SET lejar_datum = ?";
