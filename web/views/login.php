@@ -1,6 +1,10 @@
 <?php include_once "config/init.php"; ?>
 <?php include_once "_header.php"; ?>
 <?php
+if(Session::isset('userid')){
+    Redirect::to('home');
+}
+
 if(isset($_POST["login_submit"])){
     $felhasznalonev = trim(html_entity_decode($_POST["felhasznalonev"]));
     $jelszo = trim(html_entity_decode($_POST["jelszo"]));
