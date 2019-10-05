@@ -6,8 +6,8 @@ if(Session::isset('userid')){
 }
 
 if(isset($_POST["login_submit"])){
-    $felhasznalonev = trim(html_entity_decode($_POST["felhasznalonev"]));
-    $jelszo = trim(html_entity_decode($_POST["jelszo"]));
+    $felhasznalonev = trim(html_entity_decode($_POST["username"]));
+    $jelszo = trim(html_entity_decode($_POST["password"]));
 
     $db = new Database();
     $connection = $db->getConnection();
@@ -29,13 +29,25 @@ if(isset($_POST["login_submit"])){
     }
 }
 ?>
-<form method="post">
-<label for="felhasznalonev">Felhasználónév</label>
-<input type="text" name="felhasznalonev"> 
-<br>
-<label for="jelszo">Jelszó</label>
-<input type="password" name="jelszo"> 
-<br>
-<input type="submit" name="login_submit" value="Belépés">
+<div id="formContent">
+  
+  <!-- Icon -->
+        <div>
+            <img src="img/logo.png" id="icon" alt="Logo" />
+        </div>
+
+  <!-- Login Form -->
+        <form method="post">
+            <input type="text" id="username" name="username" placeholder="username">
+            <input type="password" id="password" name="password" placeholder="password">
+            <input type="submit" value="Log In" name="login_submit">
+        </form>
+
+  <!-- Remind Password -->
+        <div id="formFooter">
+            <a class="underlineHover" href="?p=lost_pass">Forgot Password?</a>
+        </div>
+
+        </div>
 </form>
 <?php include_once "_footer.php"; ?>
