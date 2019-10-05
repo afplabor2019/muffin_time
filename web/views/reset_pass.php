@@ -68,5 +68,5 @@ if($stmt->rowCount() > 0){
         Message::error('Lejárt URL!');
     }
 }else{
-    Message:error('Hibás URL');
+    Message::error('Hibás URL');
 }
