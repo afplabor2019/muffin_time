@@ -47,4 +47,19 @@ class User{
         return false;
     }
 
+    public static function isAdmin($userid){
+        $db = new Database();
+        $connection = $db->getConnection();
+
+        $sql = "SELECT jogosultsag FROM felhasznalok WHERE id = ?";
+        $stmt = $connection->prepare($sql);
+        $stmt->bindParam(1, $userid);
+        $stmt->execute();
+
+        if($stmt->rowCount() > 0){
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
+            return ($data["jogosultsag"] == "admin") ? true : false;
+        }
+        return false;
+    }
 }
