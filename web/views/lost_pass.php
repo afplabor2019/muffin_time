@@ -1,6 +1,10 @@
 <?php include_once "config/init.php"; ?>
 <?php include_once "_header.php"; ?>
 <?php
+if(Session::isset('userid')){
+    Redirect::to('home');
+}
+
 if(isset($_POST["lost_pass_submit"])){
     $email = trim(html_entity_decode($_POST["email"]));
     User::lostPassGenerate($email);
