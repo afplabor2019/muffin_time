@@ -5,7 +5,7 @@ include_once '_header.php';
 
 <h1>Dashboard</h1>
 Üdvözöllek, <?=$_SESSION['userid']?>!
-<a href="logout.php">Kilépés</a>
+<a href="?p=logout">Kilépés</a>
 
 <?php
 include_once '_footer.php';
