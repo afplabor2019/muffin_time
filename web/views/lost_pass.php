@@ -10,10 +10,23 @@ if(isset($_POST["lost_pass_submit"])){
     User::lostPassGenerate($email);
 }
 ?>
-<form method="post">
-<label for="felhasznalonev">Regisztrált email cím:</label>
-<input type="email" name="email">
-<br>
-<input type="submit" name="lost_pass_submit" value="Küldés">
-</form>
+<div id="formContent">
+  
+  <!-- Icon -->
+        <div>
+            <img src="img/logo.png" id="icon" alt="Logo" />
+        </div>
+
+  <!-- Remind Password Form -->
+        <form method="post">
+            <input type="text" id="email" name="email" placeholder="email">
+            <input type="submit" value="Send mail" name="lost_pass_submit">
+        </form>
+
+  <!-- Login -->
+        <div id="formFooter">
+            <a class="underlineHover" href="?p=login">Log In</a>
+        </div>
+
+        </div>
 <?php include_once "_footer.php"; ?>
