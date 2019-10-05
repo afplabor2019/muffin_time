@@ -28,10 +28,10 @@ if(Session::isset('userid')){
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Felhasználónév</th>
-                                <th>Email cím</th>
-                                <th>Jogosultság</th>
-                                <th>Utolsó belépés ideje</th>
+                                <th>Username</th>
+                                <th>Email address</th>
+                                <th>Role</th>
+                                <th>Last login</th>
                             </tr>
                         </thead>
                         <tbody>
