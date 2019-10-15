@@ -3,8 +3,8 @@
 **Topic of discussion:** Finalizing project idea  
 **Location:** EKE C 108  
 **Date/Time:** 2019.10.14. 13:40-15:20  
-**Report made by:** Rajna Franciska
-**Team participants**:  
+**Report made by:** Rajna Franciska  
+**Team participants**:    
 
 | Name                   | Position           |
 | ---------------------- | :----------------- |
