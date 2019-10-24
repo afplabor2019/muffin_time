@@ -8,6 +8,10 @@ A cukrászdában, ahonnan  a felkérést kaptuk jelenleg nem működik semmilyen
 
 Felkérést kaptunk egy cukrászda webáruházának fejlesztésére, hogy megkönnyítsük a megrendeléseket és az árukból történő választást. A rendszert C # programozási nyelven írják, WPF alkalmazásként, az MVVM tervezési mintázatával. A webáruházban való böngészés regisztráció nélkül is elérhető, de megrendeléshez be kell jelentkeznie.
 
+### Elvárt működés 
+
+Aki az oldalt megnyitja , az szabadon böngészhet a kínálatok között, különféle menüpontok alapján.  Komolyon érdeklődők(vásárlók) regisztrálni is tudnak az oldalon, megadva ezzel  különféle adatokat , ami a vásárláshoz és a kiszállításhoz szükségesek leszenk.  A vásárló ezután a kiválasztott termékeket a kosárba helyezheti és egy gombnyomással megrendelheti az adott termékeket a kiválasztott dátumra.
+
 ### Szükséges funkciók listája
 
 | Modul    | ID   |         Név          | Leírás                                                       |
@@ -36,10 +40,6 @@ Felkérést kaptunk egy cukrászda webáruházának fejlesztésére, hogy megkö
 - Amennyiben a fogyasztó kifejezetten a legkevésbé költséges szokásos fuvarozási módtól eltérő fuvarozási módot választ, a vállalkozás nem köteles visszatéríteni az ebből eredő többletköltségeket.
 -  A vállalkozás az általa kínált fizetési mód igénybevétele után fizetendő díjat meghaladó további díjat nem terheljenek a fogyasztókra.
 -  A webáruház üzemeltetője köteles gondoskodni arról, hogy a fogyasztó a szerződési nyilatkozatának megtételekor kifejezetten tudomásul vegye, hogy nyilatkozata fizetési kötelezettséget von maga után. 
-
-### Elvárt működés 
-
-Aki az oldalt megnyitja , az szabadon böngészhet a kínálatok között, különféle menüpontok alapján.  Komolyon érdeklődők(vásárlók) regisztrálni is tudnak az oldalon, megadva ezzel  különféle adatokat , ami a vásárláshoz és a kiszállításhoz szükségesek leszenk.  A vásárló ezután a kiválasztott termékeket a kosárba helyezheti és egy gombnyomással megrendelheti az adott termékeket a kiválasztott dátumra.
 
 ### Szótár
 
