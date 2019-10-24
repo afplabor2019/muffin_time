@@ -43,7 +43,7 @@ Aki az oldalt megnyitja , az szabadon böngészhet a kínálatok között, kül�
 
 ### Szótár
 
-**hiba:** a szoftver hibája miatt nem megfelelő vagy váratlan eredményt eredményez
-**háttér:** adat-hozzáférési réteg a szoftverben
-**frontend:** felület a felhasználó és a háttér között
-**kliens:** szoftver, amely hozzáfér a szolgáltatáshoz
+- **hiba:** a szoftver hibája miatt nem megfelelő vagy váratlan eredményt eredményez
+- **háttér:** adat-hozzáférési réteg a szoftverben
+- **frontend:** felület a felhasználó és a háttér között
+- **kliens:** szoftver, amely hozzáfér a szolgáltatáshoz
