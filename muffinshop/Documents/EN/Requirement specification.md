@@ -15,7 +15,7 @@ The user opens the application. Using several menus they can browse the offers. 
 | Backend  | F1   | Database      | Database stores all the data that is used by this application. Supplies, orders, users. |
 | Frontend | F2   | Login page    | A page which contains a fillable form in order to log in.    |
 | Frontend | F2   | Register page | A page which contains a fillable form in order to make a registration. |
-| Frontend | F3   | Main page     | Landing page. By default it lists all the available supplies from the database. |
+| Frontend | F3   | Main page     | Landing page. By default it lists all the available offers from the database. |
 | Frontend | F4   | Cart page     | On this page the users can manage their items in the cart (delete, quantity). From here they can proceed their order. |
 
 ### Legal basis
