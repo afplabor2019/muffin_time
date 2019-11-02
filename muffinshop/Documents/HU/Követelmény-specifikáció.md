@@ -6,20 +6,20 @@ A cukrászdában, ahonnan  a felkérést kaptuk jelenleg nem működik semmilyen
 
 ### A kívánt rendszer
 
-Felkérést kaptunk egy cukrászda webáruházának fejlesztésére, hogy megkönnyítsük a megrendeléseket és az árukból történő választást. A rendszert C # programozási nyelven írják, WPF alkalmazásként, az MVVM tervezési mintázatával. A webáruházban való böngészés regisztráció nélkül is elérhető, de megrendeléshez be kell jelentkeznie.
+Felkérést kaptunk egy cukrászda webáruházának fejlesztésére, hogy megkönnyítsük a megrendeléseket és az árukból történő választást. A rendszert C # programozási nyelven írják, WPF alkalmazásként, az MVVM design pattern használatával. A webáruházban való böngészés regisztráció nélkül is elérhető, de megrendeléshez be kell jelentkeznie a felhasználónak.
 
 ### Elvárt működés 
 
-Aki az oldalt megnyitja , az szabadon böngészhet a kínálatok között, különféle menüpontok alapján.  Komolyon érdeklődők(vásárlók) regisztrálni is tudnak az oldalon, megadva ezzel  különféle adatokat , ami a vásárláshoz és a kiszállításhoz szükségesek leszenk.  A vásárló ezután a kiválasztott termékeket a kosárba helyezheti és egy gombnyomással megrendelheti az adott termékeket a kiválasztott dátumra.
+Aki az oldalt megnyitja , az szabadon böngészhet a kínálatok között, különféle menüpontok alapján.  Komolyon érdeklődők(vásárlók) regisztrálni is tudnak az oldalon, megadva ezzel  különféle adatokat , ami a vásárláshoz és a kiszállításhoz szükségesek lesznek.  A vásárló ezután a kiválasztott termékeket a kosárba helyezheti és egy gombnyomással megrendelheti az adott termékeket a kiválasztott dátumra.
 
 ### Szükséges funkciók listája
 
 | Modul    | ID   |         Név          | Leírás                                                       |
 | -------- | ---- | :------------------: | ------------------------------------------------------------ |
-| Backend  | F1   |       Database       | A    Database tárolja az alkalmazás által használt összes adatot. Kellékek, megrendelések, felhasználók. |
+| Backend  | F1   |       Adatbázis       | Az Adatbázis tárolja az alkalmazás által használt összes adatot. Kellékek, megrendelések, felhasználók. |
 | Frontend | F2   | Bejelentkezési oldal | Egy oldal, amely kitölthető űrlapot tartalmaz a bejelentkezéshez. |
 | Frontend | F2   | Regisztrációs oldal  | Egy oldal, amely kitölthető űrlapot tartalmaz a regisztráció elvégzéséhez. |
-| Frontend | F3   |       Főoldal        | Leszállás oldal. Alapértelmezés szerint felsorolja az adatbázisból rendelkezésre álló összes szállítást. |
+| Frontend | F3   |       Főoldal        | Landing page. Alapértelmezés szerint felsorolja az adatbázisból rendelkezésre álló összes terméket. |
 | Frontend | F4   |     Kosár oldal      | Ezen az oldalon a felhasználók kezelhetik tételeiket a kosárban (törlés, mennyiség). Innentől kezdve folytathatják megrendelésüket. |
 
 ### Jogszabályok
@@ -44,6 +44,6 @@ Aki az oldalt megnyitja , az szabadon böngészhet a kínálatok között, kül�
 ### Szótár
 
 - **hiba:** a szoftver hibája miatt nem megfelelő vagy váratlan eredményt eredményez
-- **háttér:** adat-hozzáférési réteg a szoftverben
-- **frontend:** felület a felhasználó és a háttér között
+- **backend:** adat-hozzáférési réteg a szoftverben
+- **frontend:** felület a felhasználó és a backend között
 - **kliens:** szoftver, amely hozzáfér a szolgáltatáshoz
