@@ -1,12 +1,44 @@
-﻿<Window x:Class="MuffinShopWPF.View.BrowseWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MuffinShopWPF.View"
+        xmlns:Model="clr-namespace:MuffinShopWPF.Model" x:Class="MuffinShopWPF.View.BrowseWindow"
         mc:Ignorable="d"
-        Title="BrowseWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="BrowseWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <CollectionViewSource x:Key="muffinsViewSource" d:DesignSource="{d:DesignInstance {x:Type Model:muffins}, CreateList=True}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource muffinsViewSource}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="grid1" VerticalAlignment="Top" Grid.Row="2" Margin="32,15,0,0" HorizontalAlignment="Left" DataContext="{StaticResource muffinsViewSource}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="muffin id:"/>
+            <TextBox x:Name="muffin_idTextBox" Width="120" VerticalAlignment="Center" Text="{Binding muffin_id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="muffin name:"/>
+            <TextBox x:Name="muffin_nameTextBox" Width="120" VerticalAlignment="Center" Text="{Binding muffin_name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="muffin price:"/>
+            <TextBox x:Name="muffin_priceTextBox" Width="120" VerticalAlignment="Center" Text="{Binding muffin_price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+        </Grid>
+        <DataGrid x:Name="muffinsDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="368,11,24,8" Grid.Row="2" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="muffin_idColumn" Binding="{Binding muffin_id}" Header="muffin id" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="muffin_nameColumn" Binding="{Binding muffin_name}" Header="muffin name" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="muffin_priceColumn" Binding="{Binding muffin_price}" Header="muffin price" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
