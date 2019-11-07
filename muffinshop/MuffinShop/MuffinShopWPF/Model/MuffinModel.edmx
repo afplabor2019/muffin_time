@@ -4,46 +4,75 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MuffinModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="muffins">
+    <Schema Namespace="MuffinModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Muffin">
           <Key>
             <PropertyRef Name="muffin_id" />
           </Key>
           <Property Name="muffin_id" Type="int" Nullable="false" />
           <Property Name="muffin_name" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="muffin_price" Type="int" Nullable="false" />
+          <Property Name="muffin_price" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityContainer Name="MuffinModelStoreContainer">
-          <EntitySet Name="muffins" EntityType="Self.muffins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Muffin" EntityType="Self.Muffin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MuffinModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="muffins">
+        <EntityContainer Name="MuffinContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Muffin" EntityType="MuffinModel.Muffin" />
+          <EntitySet Name="User" EntityType="MuffinModel.User" />
+        </EntityContainer>
+        <EntityType Name="Muffin">
           <Key>
             <PropertyRef Name="muffin_id" />
           </Key>
           <Property Name="muffin_id" Type="Int32" Nullable="false" />
-          <Property Name="muffin_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="muffin_price" Type="Int32" Nullable="false" />
+          <Property Name="muffin_name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="muffin_price" Type="Decimal" Precision="18" Scale="0" />
         </EntityType>
-        <EntityContainer Name="MuffinContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="muffins" EntityType="Self.muffins" />
-        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="MuffinModelStoreContainer" CdmEntityContainer="MuffinContext">
-          <EntitySetMapping Name="muffins">
-            <EntityTypeMapping TypeName="MuffinModel.muffins">
-              <MappingFragment StoreEntitySet="muffins">
-                <ScalarProperty Name="muffin_id" ColumnName="muffin_id" />
-                <ScalarProperty Name="muffin_name" ColumnName="muffin_name" />
+        <EntitySetMapping Name="Muffin">
+            <EntityTypeMapping TypeName="MuffinModel.Muffin">
+              <MappingFragment StoreEntitySet="Muffin">
                 <ScalarProperty Name="muffin_price" ColumnName="muffin_price" />
+                <ScalarProperty Name="muffin_name" ColumnName="muffin_name" />
+                <ScalarProperty Name="muffin_id" ColumnName="muffin_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="MuffinModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
