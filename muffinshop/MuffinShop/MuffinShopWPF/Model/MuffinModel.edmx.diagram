@@ -5,7 +5,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="0eae284697e24cf8812419d52472d3d2" Name="Diagram1">
-        <EntityTypeShape EntityType="MuffinModel.muffins" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MuffinModel.Muffin" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MuffinModel.User" Width="1.5" PointX="6.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

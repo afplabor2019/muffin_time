@@ -25,6 +25,7 @@ namespace MuffinShopWPF.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<muffins> muffins { get; set; }
+        public virtual DbSet<Muffin> Muffin { get; set; }
+        public virtual DbSet<User> User { get; set; }
     }
 }

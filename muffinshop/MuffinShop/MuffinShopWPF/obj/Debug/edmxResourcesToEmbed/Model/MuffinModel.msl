@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MuffinModelStoreContainer" CdmEntityContainer="MuffinContext">
+    <EntitySetMapping Name="Muffin">
+      <EntityTypeMapping TypeName="MuffinModel.Muffin">
+        <MappingFragment StoreEntitySet="Muffin">
+          <ScalarProperty Name="muffin_price" ColumnName="muffin_price" />
+          <ScalarProperty Name="muffin_name" ColumnName="muffin_name" />
+          <ScalarProperty Name="muffin_id" ColumnName="muffin_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="MuffinModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
