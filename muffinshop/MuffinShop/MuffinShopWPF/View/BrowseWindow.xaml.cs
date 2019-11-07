@@ -19,23 +19,11 @@ namespace MuffinShopWPF.View
     /// <summary>
     /// Interaction logic for BrowseWindow.xaml
     /// </summary>
-    public partial class BrowseWindow : Window
+    public partial class BrowseWindow : Page
     {
-        MuffinContext context = new MuffinContext();
-        CollectionViewSource muffinViewSource;
-
         public BrowseWindow()
         {
             InitializeComponent();
-            muffinViewSource = ((CollectionViewSource)(FindResource("muffinsViewSource")));
-            DataContext = this;
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
-            context.muffins.Load();
-            muffinViewSource.Source = context.muffins.Local;
         }
     }
 }
