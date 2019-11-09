@@ -1,0 +1,46 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MuffinShopWPF.View"
+        xmlns:Model="clr-namespace:MuffinShopWPF.Model" x:Class="MuffinShopWPF.View.MainWindow"
+        xmlns:vm ="clr-namespace:MuffinShopWPF.ViewModel"
+        mc:Ignorable="d"
+        Title="Browse Window" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Bold"
+        TextElement.FontSize="14"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
+    <Window.DataContext>
+        <vm:BrowseWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <StackPanel>
+            <Menu HorizontalAlignment="Right">
+                <MenuItem Header="Fájl">
+                    <MenuItem Header="Kilépés"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Súgó" />
+                <MenuItem Header="Fiók">
+                    <MenuItem Header="Bejelentkezés" x:Name="login" Click="LogReg_Click"/>
+                    <MenuItem Header="Regisztráció" x:Name="signup" Click="LogReg_Click"/>
+                </MenuItem>
+            </Menu>
+            <ListView Margin="10" ItemsSource="{Binding AllMuffins}" HorizontalAlignment="Center">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <GroupBox Header="{Binding Muffin.muffin_name}" Width="400">
+                            <StackPanel>
+                                <TextBlock Text="{Binding muffin_name}" TextWrapping="Wrap" Padding="3" Margin="0 0 0 5"/>
+                                <TextBlock Text="{Binding muffin_price}" HorizontalAlignment="Right" FontStyle="Italic"/>
+                            </StackPanel>
+                        </GroupBox>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Window>
