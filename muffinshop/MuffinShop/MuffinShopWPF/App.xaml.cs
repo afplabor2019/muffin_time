@@ -13,9 +13,6 @@ namespace MuffinShopWPF
     /// </summary>
     public partial class App : Application
     {
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            StartupUri = new Uri("View/BrowseWindow.xaml", UriKind.Relative);
-        }
+
     }
 }
