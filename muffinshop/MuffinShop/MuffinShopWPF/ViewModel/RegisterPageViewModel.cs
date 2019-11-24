@@ -79,12 +79,16 @@ namespace MuffinShopWPF.ViewModel
             {
                 try
                 {
-                    Registration.RegisterUser(username, password, RetryPassword, Email);
-                    MessageBox.Show("Sikeres regisztáció!");
+                    Registration.RegisterUser(username, password, RetryPassword, email);
+                    MessageBox.Show("Sikeres regisztráció!");
                 }
                 catch (UsernameExistsException)
                 {
                     MessageBox.Show("Ez a felhasználó már létezik!");
+                }
+                catch (EmailExistsException)
+                {
+                    MessageBox.Show("Ezzel az email címmel már regisztráltak!");
                 }
                 catch (PasswordsNotMatchException)
                 {
