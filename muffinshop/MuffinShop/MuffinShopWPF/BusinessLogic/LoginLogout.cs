@@ -36,6 +36,7 @@ namespace MuffinShopWPF.BusinessLogic
         public static void UserLogout()
         {
             UIRepository.Instance.CurrentClientID = 0;
+            UIRepository.Instance.LoggedInUser = null;
         }
     }
 }
