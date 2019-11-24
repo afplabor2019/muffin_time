@@ -4,9 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MuffinShopWPF.View"
-        Height="550" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        Background="{DynamicResource MaterialDesignPaper}"
+        Height="570" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
         TextElement.FontWeight="Bold"
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
@@ -17,10 +15,10 @@
         <vm:LoginRegWindowViewModel/>
     </Window.DataContext>
     <Grid>
-        <StackPanel Orientation="Horizontal" Height="35" VerticalAlignment="Top">
-            <Button x:Name="login" Height="37" Content="Bejelentkezés" Width="247" Click="Login_Click"  Panel.ZIndex="1"/>
-            <Button x:Name="signup" Height="37" Content="Regisztráció" Width="247" Click="Signup_Click" Panel.ZIndex="1"/>
+        <StackPanel Orientation="Horizontal" Height="37" VerticalAlignment="Top">
+            <Button x:Name="login" Height="37" Content="Bejelentkezés" Width="175" Click="Login_Click"  Panel.ZIndex="1"/>
+            <Button x:Name="signup" Height="37" Content="Regisztráció" Width="175" Click="Signup_Click" Panel.ZIndex="1"/>
         </StackPanel>
-        <Frame x:Name="Main" Margin="0 35 0 0" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="Main" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
