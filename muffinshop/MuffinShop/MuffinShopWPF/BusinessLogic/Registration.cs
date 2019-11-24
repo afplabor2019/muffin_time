@@ -19,12 +19,23 @@ namespace MuffinShopWPF.BusinessLogic
             }
         }
 
+        public static bool hasEmail(string email)
+        {
+            using(var context = new MuffinContext())
+            {
+                var hasEmail = context.User.Any(u => u.email.ToLower() == email.ToLower());
+                return hasEmail;
+            }
+        }
+
         public static void RegisterUser(string username, string password, string repassword, string email)
         {
             using (var context = new MuffinContext())
             {
                 if (hasUsername(username))
                     throw new UsernameExistsException();
+                if (hasEmail(email))
+                    throw new EmailExistsException();
                 if(password == repassword)
                 {
                     User newUser = new User();
