@@ -26,6 +26,7 @@ namespace MuffinShopWPF.BusinessLogic
                     else
                     {
                         UIRepository.Instance.CurrentClientID = user.user_id;
+                        UIRepository.Instance.LoggedInUser = user;
                         return true;
                     }
                 }
