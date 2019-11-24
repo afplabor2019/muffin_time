@@ -1,0 +1,53 @@
+﻿<Window x:Class="MuffinShopWPF.View.Cart"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MuffinShopWPF.View"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Basket" Height="400" Width="280" ResizeMode="NoResize">
+    <Grid>
+        <Rectangle Height="297" VerticalAlignment="Top" Margin="0,0,0.6,0">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#A67A53"/>
+                    <GradientStop Color="#8C4F2B" Offset="1"/>
+                    <GradientStop Color="#F9CA8C" Offset="0.5"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" Text="Selected products" FontSize="25" Margin="10" FontFamily="Cooper Black"/>
+        <Grid Margin="0,93,0,93.4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" >
+                <TextBlock Text="Name" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Cambria Math" FontSize="20" />
+                <StackPanel Height="100" VerticalAlignment="Center" Margin="0,16,0.4,-32" >
+                    <TextBlock Text="1.Fruit cake" Margin="5 10"  FontFamily="Cambria Math" FontSize="15"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="1">
+                <TextBlock Text="Piece" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Cambria Math" FontSize="20"/>
+                <StackPanel Height="100" VerticalAlignment="Center" Margin="0,16,0.4,-32">
+                    <TextBlock Text="1 "  Margin="10 10" HorizontalAlignment="Right" FontFamily="Cambria Math" FontSize="15"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="2" >
+                <TextBlock Text="Price" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Cambria Math" FontSize="20" />
+                <StackPanel Height="100" VerticalAlignment="Center" Margin="0,16,0.4,-32" >
+                    <TextBlock Text="3500Ft"  Margin="10 10" HorizontalAlignment="Right" FontFamily="Cambria Math" FontSize="15"/>
+                    <TextBlock Text="All:    3500Ft" FontFamily="Cambria Math" FontSize="15"/>
+                </StackPanel>
+            </Grid>
+
+        </Grid>
+        <Separator Background="Black"/>
+
+        <Button Content="Purchase" Height="40" Width="120" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Background="#722102" Margin="76,0,77.6,48.4"/>
+    </Grid>
+</Window>
