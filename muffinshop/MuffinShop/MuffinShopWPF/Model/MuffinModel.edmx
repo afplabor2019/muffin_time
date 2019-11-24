@@ -17,10 +17,14 @@
           <Key>
             <PropertyRef Name="user_id" />
           </Key>
-          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="zip_code" Type="nchar" MaxLength="4" />
+          <Property Name="city" Type="varchar" MaxLength="255" />
+          <Property Name="address" Type="text" />
+          <Property Name="phone" Type="nchar" MaxLength="11" />
         </EntityType>
         <EntityContainer Name="MuffinModelStoreContainer">
           <EntitySet Name="Muffin" EntityType="Self.Muffin" Schema="dbo" store:Type="Tables" />
@@ -50,6 +54,10 @@
           <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="zip_code" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+          <Property Name="city" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -69,6 +77,10 @@
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="MuffinModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="zip_code" ColumnName="zip_code" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="username" ColumnName="username" />
