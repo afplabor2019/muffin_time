@@ -1,46 +1,53 @@
 ﻿<Page x:Class="MuffinShopWPF.View.RegisterPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:MuffinShopWPF.View"
-      xmlns:vm="clr-namespace:MuffinShopWPF.ViewModel"
-      xmlns:ui="clr-namespace:MuffinShopWPF.UI"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        Background="{DynamicResource MaterialDesignPaper}"
-        TextElement.FontWeight="Medium"
-        TextElement.FontSize="14"
-        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
-      Title="RegisterPage" Loaded="RegisterPage_Loaded">
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MuffinShopWPF.View"
+        mc:Ignorable="d"
+        xmlns:ui="clr-namespace:MuffinShopWPF.UI"
+        xmlns:vm="clr-namespace:MuffinShopWPF.ViewModel"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Registration" Height="480" Width="350">
     <Page.DataContext>
         <vm:RegisterPageViewModel/>
     </Page.DataContext>
     <Grid>
-        <StackPanel Width="250" HorizontalAlignment="center" VerticalAlignment="Center" Height="430">
-            <TextBlock Text="Regisztráció" HorizontalAlignment="Center" Margin="0 0 0 20" FontSize="24"/>
-            <TextBlock Text="Felhasználónév" Margin="5 0 5 0"/>
-            <TextBox x:Name="username" MinWidth="240" HorizontalAlignment="center" Margin="5 0 5 20">
-                <Binding Path="UserName"/>
-            </TextBox>
-            <TextBlock Text="Jelszó" Margin="5 0 5 0"/>
-            <PasswordBox x:Name="userPassword" MinWidth="240" HorizontalAlignment="center" Margin="5 0 5 20">
-                <ui:BoundPasswordBox.BoundPassword>
-                    <Binding Path="UserPassword" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay"/>
-                </ui:BoundPasswordBox.BoundPassword>
-            </PasswordBox>
-            <TextBlock Text="Jelszó újra" Margin="5 0 5 0"/>
-            <PasswordBox x:Name="retryPassword" MinWidth="240" HorizontalAlignment="center" Margin="5 0 5 20">
-                <ui:BoundPasswordBox.BoundPassword>
-                    <Binding Path="RetryPassword" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay"/>
-                </ui:BoundPasswordBox.BoundPassword>
-            </PasswordBox>
-            <TextBlock Text="Email cím" Margin="5 0 5 0" />
-            <TextBox x:Name="email" MinWidth="240" HorizontalAlignment="center" Margin="5 0 5 20">
-               <Binding Path="Email"/>
-             </TextBox>
-            <Button Content="Regisztrálás" Command="{Binding DoRegistration}"  Margin="5 10 5 10"/>
-        </StackPanel>
+        <Rectangle Height="480" >
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#DE1A5E"/>
+                    <GradientStop Color="#DE1A5E" Offset="1"/>
+                    <GradientStop Color="#F9CA8C" Offset="0.5"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle Height="Auto" Fill="White" Margin="20,101,20,20.4" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.Effect>
+                <DropShadowEffect Color="Red" Direction="0" BlurRadius="15" RenderingBias="Quality" ShadowDepth="1"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Grid VerticalAlignment="Stretch" Margin="32,20,20,50.4" >
+            <TextBlock  Text="Registration" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="67,0,66,330"  Foreground="White" FontSize="30" Height="40" Width="159" />
+            <StackPanel VerticalAlignment="Center" Margin="10,50,10,0" Height="250" Grid.RowSpan="2" Grid.ColumnSpan="3" >
+                <TextBox materialDesign:HintAssist.Hint="USER NAME" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,10" FontSize="18">
+                    <Binding Path="UserName"/>
+                </TextBox>
+                <TextBox materialDesign:HintAssist.Hint="EMAIL" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,10" FontSize="18">
+                    <Binding Path="Email" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay"/>
+                </TextBox>
+                <PasswordBox materialDesign:HintAssist.Hint="PASSWORD" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Margin="0,10" FontSize="18">
+                    <ui:BoundPasswordBox.BoundPassword>
+                        <Binding Path="UserPassword" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay"/>
+                    </ui:BoundPasswordBox.BoundPassword>
+                </PasswordBox>
+                <PasswordBox materialDesign:HintAssist.Hint="CONFIRM PASSWORD" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Margin="0,10" FontSize="18">
+                    <ui:BoundPasswordBox.BoundPassword>
+                        <Binding Path="RetryPassword" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay"/>
+                    </ui:BoundPasswordBox.BoundPassword>
+                </PasswordBox>
+            </StackPanel>
+        </Grid>
+        <Button VerticalAlignment="Stretch" Margin="99,391,95,27.4" Width="150" Content="SUBMIT" Command="{Binding DoRegistration}"/>
     </Grid>
 </Page>

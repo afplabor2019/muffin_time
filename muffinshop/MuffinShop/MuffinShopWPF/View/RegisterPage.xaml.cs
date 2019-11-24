@@ -24,10 +24,5 @@ namespace MuffinShopWPF.View
         {
             InitializeComponent();
         }
-
-        private void RegisterPage_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
