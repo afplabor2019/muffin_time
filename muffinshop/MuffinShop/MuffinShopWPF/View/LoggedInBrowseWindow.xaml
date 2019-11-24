@@ -1,0 +1,76 @@
+﻿<Window x:Class="MuffinShopWPF.View.LoggedInBrowseWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MuffinShopWPF.View"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Main" Height="600" Width="1000" >
+    <Grid Background="#D9B391"  >
+        <StackPanel VerticalAlignment="Top" >
+            <Grid  Margin="5">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10 0">
+                    <Button  x:Name="btn_Basket" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="White" Click="Btn_Basket_Click">
+                        <materialDesign:PackIcon Kind="Basket" Height="25" Width="25"/>
+                    </Button>
+                    <Button x:Name="btn_Settings" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="White" Margin="10 0 10 0">
+                        <materialDesign:PackIcon Kind="Settings"  Height="25" Width="25"/>
+                    </Button>
+                    <Button x:Name="btn_Account" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="White" Click="Btn_Account_Click">
+                        <materialDesign:PackIcon Kind="Account" Height="25" Width="25"/>
+                    </Button>
+                    <Button x:Name="btn_Power" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="White">
+                        <materialDesign:PackIcon Kind="Power" Height="25" Width="25" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        <Grid  Margin="250 55 0 0">
+            <Grid x:Name="GridPrincipal" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        </Grid>
+        <Grid Width="250" HorizontalAlignment="Left" Background="#A64B6C">
+            <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
+                <Grid x:Name="GridCursor" Margin="0 100 0 0" Background="LightPink" HorizontalAlignment="Left" VerticalAlignment="Top" Height="60" Width="10" />
+            </materialDesign:TransitioningContent>
+            <ListView x:Name="ListViewMenu" Margin="0 100" Foreground="White" SelectionChanged="ListViewMenu_SelectionChanged" SelectedIndex="0">
+                <ListViewItem Height="60"  FontFamily="Century">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Home" Width="30" Height="30" VerticalAlignment="Center" Margin="5" />
+                        <TextBlock Text="Home" FontSize="26" VerticalAlignment="Center" Margin="20 0"/>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="60"  FontFamily="Century">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="CakeVariant" Width="30" Height="30" VerticalAlignment="Center" Margin="5" />
+                        <TextBlock Text="Offer" FontSize="26" VerticalAlignment="Center" Margin="20 0"/>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="60"  FontFamily="Century">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="TruckDelivery" Width="30" Height="30" VerticalAlignment="Center" Margin="5" />
+                        <TextBlock Text="Delivery" FontSize="26" VerticalAlignment="Center" Margin="20 0"/>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="60"  FontFamily="Century">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Cash" Width="30" Height="30" VerticalAlignment="Center" Margin="5" />
+                        <TextBlock Text="Payment" FontSize="26" VerticalAlignment="Center" Margin="20 0"/>
+                    </StackPanel>
+                </ListViewItem>
+            </ListView>
+            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal"  VerticalAlignment="Bottom">
+                <TextBlock Text="Contact:" VerticalAlignment="Center" FontSize="20" Margin="20 0" Foreground="White" FontFamily="Century"/>
+                <Button  x:Name="btn_Facebook" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="White">
+                    <materialDesign:PackIcon Kind="FacebookBox"/>
+                </Button>
+                <Button  x:Name="btn_Email" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="White">
+                    <materialDesign:PackIcon Kind="EmailBox"/>
+                </Button>
+                <Button  x:Name="btn_Phone" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="White">
+                    <materialDesign:PackIcon Kind="Phone"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
