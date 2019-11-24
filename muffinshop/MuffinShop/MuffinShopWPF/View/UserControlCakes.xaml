@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="MuffinShopWPF.View.UserControlCakes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MuffinShopWPF.View"
+             mc:Ignorable="d" 
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            Height="auto" Width="auto">
+    <Grid Background="White">
+        <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                <StackPanel>
+                    <StackPanel Margin="10">
+                        <TextBlock Text="3500 Ft" FontSize="50" Foreground="#722102"/>
+                        <TextBlock Text="Fruit cake" FontSize="25"  FontFamily="Cooper Black" Foreground="#722102" Margin="5"/>
+                        <TextBlock Text="With Fresh Friuts" FontSize="20"  FontFamily="Cooper Black" Foreground="#722102" Margin="5"/>
+                        <TextBlock Text="" Width="250"  FontSize="18" Foreground="#722102" Margin="5" FontFamily="Cambria" TextWrapping="Wrap">  
+                            Available in different sizes.
+                            Contains allergens: Lactose, hazelnuts.
+                        </TextBlock>
+                    </StackPanel>
+                    <Button FontFamily="Cambria" Content="Buy" FontSize="18"  Margin="25" Background="#722102"/>
+                </StackPanel>
+                <Image Width="200" Height="200" Source="../Assets/Images/Cakes/cakes1.jpg" Stretch="UniformToFill"/>
+            </StackPanel>
+        </materialDesign:TransitioningContent>
+    </Grid>
+</UserControl>
