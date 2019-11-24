@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MuffinShopWPF.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,5 +37,14 @@ namespace MuffinShopWPF.UI
             get { return _currentClientID; }
             set { _currentClientID = value; }
         }
+
+        private User loggedInUser;
+
+        public User LoggedInUser
+        {
+            get { return loggedInUser; }
+            set { loggedInUser = value; }
+        }
+
     }
 }
