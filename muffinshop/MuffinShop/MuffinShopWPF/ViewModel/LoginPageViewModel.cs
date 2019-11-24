@@ -44,8 +44,7 @@ namespace MuffinShopWPF.ViewModel
             {
                 if (LoginLogout.UserLogin(username, password))
                 {
-                    new MainWindow().Show();
-                    Application.Current.MainWindow.Close();
+                    new LoggedInBrowseWindow().Show();
                 }
             }
             catch (UserNotFoundException)
