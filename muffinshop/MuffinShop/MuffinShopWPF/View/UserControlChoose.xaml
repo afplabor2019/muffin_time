@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="MuffinShopWPF.View.UserControlChoose"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MuffinShopWPF.View"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             Height="auto" Width="auto">
+    <Grid>
+        <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" Height="300" Background="#FFFFFF" >
+                    <Grid.Effect>
+                        <DropShadowEffect BlurRadius="20" Color="Azure" ShadowDepth="1"/>
+                    </Grid.Effect>
+
+                    <StackPanel Width="180">
+                        <TextBlock Margin="10" FontFamily="Cambria" FontSize="12" Text="Fruit Cake" Foreground="#722102" HorizontalAlignment="Center" />
+                        <Image Source="../Assets/Images/Cakes/cakes1.jpg" Width="180" Height="150" Stretch="UniformToFill" />
+                        <TextBlock FontSize="8" Margin="5" TextWrapping="Wrap"  FontFamily="Cambria" Foreground="#722102">
+                            In different sizes.
+                        </TextBlock>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                            <TextBlock Text=" 3500 Ft" VerticalAlignment="Center" FontSize="20"  FontFamily="Cambria" Foreground="#722102"/>
+                            <Button Width="100" Content="More" Margin="10" FontFamily="Cambria" Background="#722102"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="1" Height="300" Background="#FFFFFF" Margin="10">
+                    <Grid.Effect>
+                        <DropShadowEffect BlurRadius="20" Color="Azure" ShadowDepth="1"/>
+                    </Grid.Effect>
+
+                    <StackPanel Width="180">
+                        <TextBlock Margin="10" FontFamily="Cambria" FontSize="12" Text="Chocolate Cake" Foreground="#722102" HorizontalAlignment="Center" />
+                        <Image Source="../Assets/Images/Cakes/cakes2.jpg" Width="180" Height="150" Stretch="UniformToFill" />
+                        <TextBlock FontSize="8" Margin="5" TextWrapping="Wrap"  FontFamily="Cambria" Foreground="#722102">
+                            In different sizes.
+                        </TextBlock>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                            <TextBlock Text="3500Ft" VerticalAlignment="Center" Margin="10" Foreground="#A62B0F" FontSize="20"  FontFamily="Cambria"/>
+                            <Button Width="100" Content="More" Margin="10" FontFamily="Cambria" Background="#722102"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="2" Height="300" Background="#FFFFFF" >
+                    <Grid.Effect>
+                        <DropShadowEffect BlurRadius="20" Color="Azure" ShadowDepth="1"/>
+                    </Grid.Effect>
+
+                    <StackPanel Width="180">
+                        <TextBlock Margin="10" FontFamily="Cambria" FontSize="12" Text="Cherry Muffin" Foreground="#722102" HorizontalAlignment="Center" />
+                        <Image Source="../Assets/Images/Cakes/muffin.jpg" Width="180" Height="150" Stretch="UniformToFill" />
+                        <TextBlock FontSize="8" Margin="5" TextWrapping="Wrap"  FontFamily="Cambria" Foreground="#722102">
+                            Available in larger quantities.
+                        </TextBlock>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                            <TextBlock Text="150Ft/pc." VerticalAlignment="Center" FontSize="15" Foreground="#722102" FontFamily="Cambria"/>
+                            <Button Width="100" Content="More" Margin="10" FontFamily="Cambria" Background="#722102"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </materialDesign:TransitioningContent>
+    </Grid>
+</UserControl>
