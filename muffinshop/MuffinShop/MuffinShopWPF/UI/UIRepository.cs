@@ -46,5 +46,12 @@ namespace MuffinShopWPF.UI
             set { loggedInUser = value; }
         }
 
+        private Cart userCart;
+        public Cart UserCart
+        {
+            get { return userCart; }
+            set { userCart = value; }
+        }
+
     }
 }
