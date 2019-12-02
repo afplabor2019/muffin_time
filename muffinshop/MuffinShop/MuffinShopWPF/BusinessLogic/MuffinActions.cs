@@ -9,7 +9,7 @@ namespace MuffinShopWPF.BusinessLogic
 {
     public static class MuffinActions
     {
-        public static void AddMuffin(string muffin_name, decimal muffin_price)
+        public static void AddMuffin(string muffin_name, int muffin_price)
         {
             using(var context = new MuffinContext())
             {
@@ -21,7 +21,7 @@ namespace MuffinShopWPF.BusinessLogic
             }
         }
 
-        public static void ModifyMuffin(int muffin_id, string muffin_name, decimal muffin_price)
+        public static void ModifyMuffin(int muffin_id, string muffin_name, int muffin_price)
         {
             using(var context = new MuffinContext())
             {
