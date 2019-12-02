@@ -50,6 +50,20 @@ namespace MuffinShopWPF.Model
             }
         }
 
+        private int priceSum;
+        public int PriceSum
+        {
+            get
+            {
+                foreach(CartItem item in cart)
+                {
+                    priceSum += item.Price * item.Quantity;
+                }
+
+                return priceSum;
+            }
+        }
+
         public Cart()
         {
 
