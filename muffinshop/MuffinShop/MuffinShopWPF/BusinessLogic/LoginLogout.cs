@@ -27,6 +27,7 @@ namespace MuffinShopWPF.BusinessLogic
                     {
                         UIRepository.Instance.CurrentClientID = user.user_id;
                         UIRepository.Instance.LoggedInUser = user;
+                        UIRepository.Instance.UserCart = new Cart();
                         return true;
                     }
                 }
@@ -37,6 +38,7 @@ namespace MuffinShopWPF.BusinessLogic
         {
             UIRepository.Instance.CurrentClientID = 0;
             UIRepository.Instance.LoggedInUser = null;
+            UIRepository.Instance.UserCart = null;
         }
     }
 }
