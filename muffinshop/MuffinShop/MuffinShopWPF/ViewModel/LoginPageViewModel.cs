@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace MuffinShopWPF.ViewModel
@@ -44,7 +45,8 @@ namespace MuffinShopWPF.ViewModel
             {
                 if (LoginLogout.UserLogin(username, password))
                 {
-                    new LoggedInBrowseWindow().Show();
+                    LoggedInBrowseWindow loggedInBrowseWindow = new LoggedInBrowseWindow();
+                    loggedInBrowseWindow.Show();
                 }
             }
             catch (UserNotFoundException)
