@@ -32,5 +32,9 @@ namespace MuffinShopWPF.Model
             set { price = value; }
         }
 
+        public int ProductPriceSum
+        {
+            get { return this.Price * this.Quantity; }
+        }
     }
 }
