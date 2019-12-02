@@ -11,7 +11,8 @@
           </Key>
           <Property Name="muffin_id" Type="int" Nullable="false" />
           <Property Name="muffin_name" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="muffin_price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="muffin_desc" Type="text" Nullable="false" />
+          <Property Name="muffin_price" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -35,17 +36,9 @@
     <edmx:ConceptualModels>
       <Schema Namespace="MuffinModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="MuffinContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Muffin" EntityType="MuffinModel.Muffin" />
           <EntitySet Name="User" EntityType="MuffinModel.User" />
+          <EntitySet Name="Muffin" EntityType="MuffinModel.Muffin" />
         </EntityContainer>
-        <EntityType Name="Muffin">
-          <Key>
-            <PropertyRef Name="muffin_id" />
-          </Key>
-          <Property Name="muffin_id" Type="Int32" Nullable="false" />
-          <Property Name="muffin_name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="muffin_price" Type="Decimal" Precision="18" Scale="0" />
-        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="user_id" />
@@ -59,21 +52,21 @@
           <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="phone" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
         </EntityType>
+        <EntityType Name="Muffin">
+          <Key>
+            <PropertyRef Name="muffin_id" />
+          </Key>
+          <Property Name="muffin_id" Type="Int32" Nullable="false" />
+          <Property Name="muffin_name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="muffin_desc" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="muffin_price" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="MuffinModelStoreContainer" CdmEntityContainer="MuffinContext">
-        <EntitySetMapping Name="Muffin">
-            <EntityTypeMapping TypeName="MuffinModel.Muffin">
-              <MappingFragment StoreEntitySet="Muffin">
-                <ScalarProperty Name="muffin_price" ColumnName="muffin_price" />
-                <ScalarProperty Name="muffin_name" ColumnName="muffin_name" />
-                <ScalarProperty Name="muffin_id" ColumnName="muffin_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="MuffinModel.User">
               <MappingFragment StoreEntitySet="User">
@@ -85,6 +78,16 @@
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Muffin">
+            <EntityTypeMapping TypeName="MuffinModel.Muffin">
+              <MappingFragment StoreEntitySet="Muffin">
+                <ScalarProperty Name="muffin_price" ColumnName="muffin_price" />
+                <ScalarProperty Name="muffin_desc" ColumnName="muffin_desc" />
+                <ScalarProperty Name="muffin_name" ColumnName="muffin_name" />
+                <ScalarProperty Name="muffin_id" ColumnName="muffin_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
