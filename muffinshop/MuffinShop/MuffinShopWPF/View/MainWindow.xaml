@@ -7,31 +7,32 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="Main" Height="600" Width="1000" >
-    <Grid Background="#D9B391"  >
+    <Grid Background="#fff4e4
+          "  >
         <StackPanel VerticalAlignment="Top" >
             <Grid  Margin="5">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10 0">
                     <Button  x:Name="btn_Basket" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="White" Click="Btn_Basket_Click">
-                        <materialDesign:PackIcon Kind="Basket" Height="25" Width="25"/>
+                        <materialDesign:PackIcon Kind="Basket" Height="25" Width="25" Foreground="#3d0e1e"/>
                     </Button>
                     <Button x:Name="btn_Settings" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="White" Margin="10 0 10 0">
-                        <materialDesign:PackIcon Kind="Settings"  Height="25" Width="25"/>
+                        <materialDesign:PackIcon Kind="Settings"  Height="25" Width="25" Foreground="#3d0e1e"/>
                     </Button>
                     <Button x:Name="btn_Account" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="White" Click="Btn_Account_Click">
-                        <materialDesign:PackIcon Kind="Account" Height="25" Width="25"/>
+                        <materialDesign:PackIcon Kind="Account" Height="25" Width="25" Foreground="#3d0e1e"/>
                     </Button>
                     <Button x:Name="btn_Power" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="White">
-                        <materialDesign:PackIcon Kind="Power" Height="25" Width="25" />
+                        <materialDesign:PackIcon Kind="Power" Height="25" Width="25" Foreground="#3d0e1e"/>
                     </Button>
                 </StackPanel>
             </Grid>
     </StackPanel>
         <Grid  Margin="250 55 0 0">
-            <Grid x:Name="GridPrincipal" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Frame x:Name="GridPrincipal" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         </Grid>
-        <Grid Width="250" HorizontalAlignment="Left" Background="#A64B6C">
+        <Grid Width="250" HorizontalAlignment="Left" Background="#FF3D0E1E">
             <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
-                <Grid x:Name="GridCursor" Margin="0 100 0 0" Background="LightPink" HorizontalAlignment="Left" VerticalAlignment="Top" Height="60" Width="10" />
+                <Grid x:Name="GridCursor" Margin="0 100 0 0" Background="#f88020" HorizontalAlignment="Left" VerticalAlignment="Top" Height="60" Width="10" />
             </materialDesign:TransitioningContent>
             <ListView x:Name="ListViewMenu" Margin="0 100" Foreground="White" SelectionChanged="ListViewMenu_SelectionChanged" SelectedIndex="0">
                 <ListViewItem Height="60"  FontFamily="Century">
