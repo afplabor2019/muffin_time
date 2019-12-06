@@ -12,12 +12,12 @@
         mc:Ignorable="d"
         Title="Muffin Login">
     <Window.DataContext>
-        <vm:LoginRegWindowViewModel/>
+        <vm:LoginPageViewModel/>
     </Window.DataContext>
     <Grid>
         <StackPanel Orientation="Horizontal" Height="37" VerticalAlignment="Top">
-            <Button x:Name="login" Height="37" Content="Bejelentkezés" Width="175" Click="Login_Click"  Panel.ZIndex="1"/>
-            <Button x:Name="signup" Height="37" Content="Regisztráció" Width="175" Click="Signup_Click" Panel.ZIndex="1"/>
+            <Button x:Name="login" Height="37" Content="Bejelentkezés" Width="175" Click="Login_Click"  Panel.ZIndex="1" Background="#FFD1274B" BorderBrush="#FFF88020"/>
+            <Button x:Name="signup" Height="37" Content="Regisztráció" Width="175" Click="Signup_Click" Panel.ZIndex="1" Background="#FFD1274B" BorderBrush="#FFF88020"/>
         </StackPanel>
         <Frame x:Name="Main" NavigationUIVisibility="Hidden"/>
     </Grid>
