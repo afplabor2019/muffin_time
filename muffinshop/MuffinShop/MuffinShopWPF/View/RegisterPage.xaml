@@ -16,19 +16,19 @@
         <Rectangle Height="480" >
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#DE1A5E"/>
-                    <GradientStop Color="#DE1A5E" Offset="1"/>
-                    <GradientStop Color="#F9CA8C" Offset="0.5"/>
+                    <GradientStop Color="#fff4e4"/>
+                    <GradientStop Color="#f88020" Offset="1"/>
+                    <GradientStop Color="#fff4e4" Offset="0.5"/>
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
         <Rectangle Height="Auto" Fill="White" Margin="20,101,20,20.4" RenderTransformOrigin="0.5,0.5">
             <Rectangle.Effect>
-                <DropShadowEffect Color="Red" Direction="0" BlurRadius="15" RenderingBias="Quality" ShadowDepth="1"/>
+                <DropShadowEffect Color="#d1274b" Direction="0" BlurRadius="15" RenderingBias="Quality" ShadowDepth="1"/>
             </Rectangle.Effect>
         </Rectangle>
         <Grid VerticalAlignment="Stretch" Margin="32,20,20,50.4" >
-            <TextBlock  Text="Registration" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="67,0,66,330"  Foreground="White" FontSize="30" Height="40" Width="159" />
+            <TextBlock  Text="Registration" HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" Margin="67,0,66,330"  Foreground="#3d0e1e" FontSize="28" Height="40" Width="162" />
             <StackPanel VerticalAlignment="Center" Margin="10,50,10,0" Height="250" Grid.RowSpan="2" Grid.ColumnSpan="3" >
                 <TextBox materialDesign:HintAssist.Hint="USER NAME" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,10" FontSize="18">
                     <Binding Path="UserName"/>
@@ -48,6 +48,6 @@
                 </PasswordBox>
             </StackPanel>
         </Grid>
-        <Button VerticalAlignment="Stretch" Margin="99,391,95,27.4" Width="150" Content="SUBMIT" Command="{Binding DoRegistration}"/>
+        <Button VerticalAlignment="Stretch" Margin="99,391,95,27.4" Width="150" Content="SUBMIT" Command="{Binding DoRegistration}" Background="#FFD1274B" BorderBrush="#FFF88020"/>
     </Grid>
 </Page>
