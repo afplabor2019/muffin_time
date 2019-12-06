@@ -11,13 +11,13 @@
         <Rectangle Height="297" VerticalAlignment="Top" Margin="0,0,0.6,0">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#A67A53"/>
-                    <GradientStop Color="#8C4F2B" Offset="1"/>
-                    <GradientStop Color="#F9CA8C" Offset="0.5"/>
+                    <GradientStop Color="#fff4e4"/>
+                    <GradientStop Color="#FFF88020" Offset="1"/>
+                    <GradientStop Color="#fff4e4" Offset="0.5"/>
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" Text="Selected products" FontSize="25" Margin="10" FontFamily="Cooper Black"/>
+        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" Text="Selected products" FontSize="25" Margin="10" FontFamily="Cooper Black" Foreground="#3d0e1e"/>
         <Grid Margin="0,93,0,93.4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -26,28 +26,28 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0" >
-                <TextBlock Text="Name" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Cambria Math" FontSize="20" />
+                <TextBlock Text="Name" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Cambria Math" FontSize="20" Foreground="#3d0e1e"/>
                 <StackPanel Height="100" VerticalAlignment="Center" Margin="0,16,0.4,-32" >
                     <TextBlock Text="1.Fruit cake" Margin="5 10"  FontFamily="Cambria Math" FontSize="15"/>
                 </StackPanel>
             </Grid>
             <Grid Grid.Column="1">
-                <TextBlock Text="Piece" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Cambria Math" FontSize="20"/>
+                <TextBlock Text="Piece" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Cambria Math" FontSize="20" Foreground="#3d0e1e"/>
                 <StackPanel Height="100" VerticalAlignment="Center" Margin="0,16,0.4,-32">
                     <TextBlock Text="1 "  Margin="10 10" HorizontalAlignment="Right" FontFamily="Cambria Math" FontSize="15"/>
                 </StackPanel>
             </Grid>
             <Grid Grid.Column="2" >
-                <TextBlock Text="Price" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Cambria Math" FontSize="20" />
+                <TextBlock Text="Price" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Cambria Math" FontSize="20" Foreground="#3d0e1e"/>
                 <StackPanel Height="100" VerticalAlignment="Center" Margin="0,16,0.4,-32" >
                     <TextBlock Text="3500Ft"  Margin="10 10" HorizontalAlignment="Right" FontFamily="Cambria Math" FontSize="15"/>
-                    <TextBlock Text="All:    3500Ft" FontFamily="Cambria Math" FontSize="15"/>
+                    <TextBlock Text="All:    3500Ft" FontFamily="Cambria Math" FontSize="15" Foreground="#3d0e1e"/>
                 </StackPanel>
             </Grid>
 
         </Grid>
-        <Separator Background="Black"/>
+        <Separator Background="#3d0e1e"/>
 
-        <Button Content="Purchase" Height="40" Width="120" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Background="#722102" Margin="76,0,77.6,48.4"/>
+        <Button Content="Purchase" Height="40" Width="120" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Background="#FFD1274B" Margin="76,0,77.6,48.4" BorderBrush="#FFF88020"/>
     </Grid>
 </Window>
