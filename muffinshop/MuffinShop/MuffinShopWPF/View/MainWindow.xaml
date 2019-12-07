@@ -16,7 +16,7 @@
                         <materialDesign:PackIcon Kind="Basket" Height="25" Width="25" Foreground="#3d0e1e"/>
                     </Button>
                     <Button x:Name="btn_Settings" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="White" Margin="10 0 10 0">
-                        <materialDesign:PackIcon Kind="Settings"  Height="25" Width="25" Foreground="#3d0e1e"/>
+                        <materialDesign:PackIcon Kind="Settings"  Height="25" Width="25" Foreground="Gray"/>
                     </Button>
                     <Button x:Name="btn_Account" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="White" Click="Btn_Account_Click">
                         <materialDesign:PackIcon Kind="Account" Height="25" Width="25" Foreground="#3d0e1e"/>
@@ -49,14 +49,14 @@
                 </ListViewItem>
                 <ListViewItem Height="60"  FontFamily="Century">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="TruckDelivery" Width="30" Height="30" VerticalAlignment="Center" Margin="5" />
-                        <TextBlock Text="Delivery" FontSize="26" VerticalAlignment="Center" Margin="20 0"/>
+                        <materialDesign:PackIcon Kind="TruckDelivery" Width="30" Height="30" VerticalAlignment="Center" Margin="5" Foreground="Gray"/>
+                        <TextBlock Text="Delivery" FontSize="26" VerticalAlignment="Center" Margin="20 0" Foreground="Gray"/>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem Height="60"  FontFamily="Century">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Cash" Width="30" Height="30" VerticalAlignment="Center" Margin="5" />
-                        <TextBlock Text="Payment" FontSize="26" VerticalAlignment="Center" Margin="20 0"/>
+                        <materialDesign:PackIcon Kind="Cash" Width="30" Height="30" VerticalAlignment="Center" Margin="5" Foreground="Gray"/>
+                        <TextBlock Text="Payment" FontSize="26" VerticalAlignment="Center" Margin="20 0" Foreground="Gray"/>
                     </StackPanel>
                 </ListViewItem>
             </ListView>
