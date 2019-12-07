@@ -48,6 +48,6 @@
         </Grid>
         <Separator Background="#3d0e1e"/>
 
-        <Button Content="Purchase" Height="40" Width="120" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Background="#FFD1274B" Margin="76,0,77.6,48.4" BorderBrush="#FFF88020"/>
+        <Button Content="Purchase" Height="40" Width="120" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Background="Gray" Margin="76,0,77.6,48.4" BorderBrush="#FFF88020"/>
     </Grid>
 </Window>
