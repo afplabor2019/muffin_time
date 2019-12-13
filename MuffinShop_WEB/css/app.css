@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap&subset=latin-ext');
+*{
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+html {
+    position: relative;
+    min-height: 100%;
+}
+body{
+    background-color: #f2f2f2;
+    margin-bottom: 60px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #f5f5f5;
+}
+  
+
+.navbar-pink{
+    background-color: #D991B3 !important;
+}
+
+.navbar-pink li a:hover{
+    background-color: #c76f9e !important;
+    border-radius: 5px;
+}
+
+.navbar-pink li.active{
+    background-color: #c76f9e !important;
+    border-radius: 5px;
+}
+
+.search-filter{
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+
+.search-filter div{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.search-filter .filter-name{
+    margin: 20px 0 15px 0;
+    text-align: center;
+    font-size: 18px;
+}
+
+.search-filter .delivery-mode-option{
+    display: inline-block;
+    margin: 0 15px 0 0;
+}
+
+.search-filter hr.filter-divider{
+    width: 80%;
+}
+
+.search-filter .price-range .price-range-selector{
+    display: inline-block !important;
+    margin: 0 20px 10px auto;
+}
+
+.priceinput{
+    width: 100px;
+}
+
+.muffin-item{
+    color: black;
+    width: 200px;
+    height: auto;
+    border: 1px solid rgba(0,0,0,0.2);
+    padding: 5px;
+    display: inline-block;
+    margin: 10px;
+}
+
+.muffin-item img{
+    width: 100px;
+}
+
+.muffin-item span.currency{
+    font-size: 16px;
+}
+
+.login-form{
+    max-width: 600px;
+}
+.login-form .form-control {
+    position: relative;
+    padding-left: 45px !important;
+}
+.login-form i.fas {
+    position: absolute;
+    margin-top: 6px;
+    left: 20px;
+    color: black;
+    font-size: 22px;
+    z-index: 9999;
+}
+
+.divider{
+    width: 50% !important;
+}
+
+.profile-option-divider{
+    width: 30% !important;
+}
+
+.zip-input{
+    width: 35% !important;
+}
+
+.city-input{
+    width: 50% !important;
+}
+
+.delivery-row{
+    width: 70% !important;
+}
+
+input.has-error{
+    border: 1px solid red;
+}
