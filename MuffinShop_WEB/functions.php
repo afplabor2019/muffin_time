@@ -240,3 +240,50 @@ function get_muffin_by_id($muffin_id){
 
     return $result;
 }
+
+function place_order($userid, $order_date, $delivery_mode, $payment_method, $total){
+    global $db;
+    
+    $delivery = $delivery_mode == "personal" ? 1 : 2;
+    $payment = $payment_method == "cash" ? 1 : 2;
+
+    $sql = $db->prepare("INSERT INTO orders (user_id, order_date, delivery_mode, payment_method, total) VALUES(?,?,?,?,?)");
+
+    $sql->bind_param("isiii", $userid, $order_date, $delivery, $payment, $total);
+
+    if($sql->execute()){
+        // lefutott, ezért az order_detailsbe pakoljuk az adatokat
+        foreach(array_unique($_SESSION['cart']) as $cart_item){
+            $product = get_muffin_by_id($cart_item);
+            $product_qty = count(array_keys($_SESSION["cart"], $product["muffin_id"]));
+            insert_order_details($sql->insert_id, $product["muffin_id"], $product_qty);
+        }
+
+        return true;
+    }
+
+    return false;
+}
+
+function insert_order_details($order_id, $product_id, $qty){
+    global $db;
+
+    $sql = $db->prepare("INSERT INTO order_details (order_id, product_id, qty) VALUES(?,?,?)");
+
+    $sql->bind_param("iii", $order_id, $product_id, $qty);
+
+    return $sql->execute();
+}
+
+function get_user_order_history($userid){
+    global $db;
+
+    $sql = $db->prepare("SELECT order_id, order_date, total FROM orders WHERE user_id = ? ORDER BY order_date DESC");
+    $sql->bind_param("i", $userid);
+
+    $sql->execute();
+
+    $result = $sql->get_result();
+
+    return $result;
+}
