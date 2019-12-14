@@ -36,9 +36,14 @@ $muffins = get_all_muffins();
     <div class="col-md-8">
       <div class="product-listing">
         <?php
+        if($muffins != null){
           foreach($muffins as $muffin){
             include 'partials/_muffin_item.php';
           }
+        }
+        else{
+          echo "<h2 class='text-center'>Nincs megjeleníthető termék!</h2>";
+        }
         ?>
       </div>
     </div>
