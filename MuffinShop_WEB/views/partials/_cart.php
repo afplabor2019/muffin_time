@@ -24,9 +24,34 @@
                     break;
                 }
             }
+
+            if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["order_submit"])){
+              if(check_existing_user_address($_SESSION["userid"])){
+                // adat felvitele adatbázisba
+                // kosár ürítése
+                $userid = $_SESSION["userid"];
+                $order_date = date("Y-m-d H:i:s");
+                $delivery_mode = trim($_POST["deliveryMode"]);
+                $payment_method = trim($_POST["paymentMethod"]);
+
+                foreach(array_unique($_SESSION['cart']) as $cart_item){
+                    $product = get_muffin_by_id($cart_item);
+                    $product_qty = count(array_keys($_SESSION["cart"], $product["muffin_id"]));
+
+                    if(place_order($userid, $order_date, $delivery_mode, $payment_method)){
+                      $_SESSION['cart'] = array();
+                      redirect('home', ["order_success" => 1]);
+                    }else{
+                      echo display_error("Sikertelen rendelés!");
+                    }
+                }
+              }else{
+                redirect('home', ['order_success' => 0]);
+              }
+            }
         ?>
         <?php $total = 0; ?>
-          <!-- Shopping cart table -->
+        <form method="POST" action="<?php echo url('cart'); ?>">
           <div class="table-responsive">
             <table class="table">
               <thead>
@@ -75,19 +100,40 @@
         </div>
       </div>
 
+      <div class="row py-5 p-4 bg-white rounded shadow-sm">
+        <div class="col-lg-6">
+          <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Szállítási mód</div>
+          <div class="p-4">
+            <div class="delivery-mode">
+              <label class="radio-inline mr-5"><input type="radio" name="deliveryMode" value="personal" checked="checked"> Személyes átvétel</label>
+              <label class="radio-inline mr-5"><input type="radio" name="deliveryMode" value="home"> Házhozszállítás</label>
+            </div>
+            <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Fizetési mód</div>
+            <div class="payment-method">
+              <label class="radio-inline mr-5"><input type="radio" name="paymentMethod" value="cash" checked="checked"> Készpénz</label>
+              <label class="radio-inline mr-5"><input type="radio" name="paymentMethod" value="creditcard"> Bankkártya</label>
+            </div>
+          <div class="p-4">
+            <p class="font-italic mb-4">Kérjük amennyiben bármilyen megjegyzése, kérése van írja le nekünk.</p>
+            <textarea name="" cols="30" rows="2" class="form-control"></textarea>
+          </div>
+        </div>
+      </div>
+
         <div class="col-lg-6 ml-auto">
           <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Rendelés összegzése </div>
           <div class="p-4">
             <ul class="list-unstyled mb-4">
               <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Részösszeg </strong><strong><?=$total?> Ft</strong></li>
-              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Szállítási költség</strong><strong>INGYENES</strong></li>
+              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Szállítási költség</strong><strong id="deliveryPrice">INGYENES</strong></li>
               <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Összesen</strong>
                 <h5 class="font-weight-bold"><?=$total?> Ft</h5>
               </li>
-            </ul><a href="#" class="btn btn-dark rounded-pill py-2 btn-block <?php echo check_existing_user_address($_SESSION["userid"]) ? "" : 'disabled'; ?>">Fizetés</a>
+            </ul><button class="btn btn-dark rounded-pill py-2 btn-block" <?php echo check_existing_user_address($_SESSION["userid"]) ? "" : 'disabled'; ?> type="submit" name="order_submit">Fizetés</button>
           </div>
         </div>
       </div>
     </div>
+    </form>
 </div>
 <?php endif; ?>
