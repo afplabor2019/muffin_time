@@ -174,29 +174,69 @@ function change_user_address($userid, $params = []){
     global $db;
 
     if(is_array($params)){
-        if(count($params) == 5){
+        if(count($params) == 4){
             if(check_existing_user_address($userid)){
-                $sql = $db->prepare("UPDATE users_data SET zip = ?, city = ?, address = ?, phone = ? WHERE user_id = ?");
+                $sql = $db->prepare("UPDATE users_data SET zip = ?, city = ?, address = ?, extra = '', phone = ? WHERE user_id = ?");
                 $sql->bind_param("ssssi", $params["zip"], $params["city"], $params["address"], $params["phone"], $userid);
 
-                $sql->execute();
-
-                return $sql->affected_rows > 0;
+                return $sql->execute();
             }else{
-                $sql = $db->prepare("INSERT INTO users_data (user_id,zip,city,address,phone) VALUES(?,?,?,?,?)");
+                $sql = $db->prepare("INSERT INTO users_data (user_id,zip,city,address,extra,phone) VALUES(?,?,?,?,'',?)");
                 $sql->bind_param("ssssi", $userid, $params["zip"], $params["city"], $params["address"], $params["phone"]);
 
-                $sql->execute();
-
-                return $sql->affected_rows > 0;
+                return $sql->execute();
             }
         }
-        else if(count($params) == 6){
-            return true;
+        else if(count($params) == 5){
+            if(check_existing_user_address($userid)){
+                $sql = $db->prepare("UPDATE users_data SET zip = ?, city = ?, address = ?, extra = ?, phone = ? WHERE user_id = ?");
+                $sql->bind_param("sssssi", $params["zip"], $params["city"], $params["address"], $params["floor"], $params["phone"], $userid);
+
+                
+
+                return $sql->execute();
+            }else{
+                $sql = $db->prepare("INSERT INTO users_data (user_id,zip,city,address,extra,phone) VALUES(?,?,?,?,?,?)");
+                $sql->bind_param("isssss", $userid, $params["zip"], $params["city"], $params["address"], $params["floor"], $params["phone"]);
+
+                return $sql->execute();
+            }
         }else{
             return false;
         }
     }else{
         return false;
     }
+}
+
+function get_user_address($userid){
+    global $db;
+    $data = [];
+
+    if(check_existing_user_address($userid)){
+
+         $sql = $db->prepare("SELECT zip,city,address,extra,phone FROM users_data WHERE user_id = ?");
+         $sql->bind_param("i", $userid);
+         $sql->execute();
+
+         $result = $sql->get_result();
+
+         if($result->num_rows > 0){
+             $data = $result->fetch_assoc();
+         }
+    }
+
+    return $data;
+}
+
+function get_muffin_by_id($muffin_id){
+    global $db;
+
+    $sql = $db->prepare("SELECT * FROM muffins WHERE muffin_id = ?");
+    $sql->bind_param("i", $muffin_id);
+    $sql->execute();
+
+    $result = $sql->get_result()->fetch_assoc();
+
+    return $result;
 }
