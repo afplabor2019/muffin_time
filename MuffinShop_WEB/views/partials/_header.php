@@ -9,5 +9,6 @@
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo asset('css/navbar.css'); ?>">
     <link rel="stylesheet" href="<?php echo asset('css/app.css'); ?>">
+    <link rel="stylesheet" href="<?php echo asset('css/muffin_details.css'); ?>">
 </head>
 <body>

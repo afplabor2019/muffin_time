@@ -1,5 +1,5 @@
 <?php
-define('DOMAIN', 'http://localhost/MuffinShop/');
+define('DOMAIN', 'http://muffinshop.test/');
 define('BASE_PATH', __DIR__);
 
 define('DB_HOST', '127.0.0.1');

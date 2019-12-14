@@ -174,29 +174,116 @@ function change_user_address($userid, $params = []){
     global $db;
 
     if(is_array($params)){
-        if(count($params) == 5){
+        if(count($params) == 4){
             if(check_existing_user_address($userid)){
-                $sql = $db->prepare("UPDATE users_data SET zip = ?, city = ?, address = ?, phone = ? WHERE user_id = ?");
+                $sql = $db->prepare("UPDATE users_data SET zip = ?, city = ?, address = ?, extra = '', phone = ? WHERE user_id = ?");
                 $sql->bind_param("ssssi", $params["zip"], $params["city"], $params["address"], $params["phone"], $userid);
 
-                $sql->execute();
-
-                return $sql->affected_rows > 0;
+                return $sql->execute();
             }else{
-                $sql = $db->prepare("INSERT INTO users_data (user_id,zip,city,address,phone) VALUES(?,?,?,?,?)");
+                $sql = $db->prepare("INSERT INTO users_data (user_id,zip,city,address,extra,phone) VALUES(?,?,?,?,'',?)");
                 $sql->bind_param("ssssi", $userid, $params["zip"], $params["city"], $params["address"], $params["phone"]);
 
-                $sql->execute();
-
-                return $sql->affected_rows > 0;
+                return $sql->execute();
             }
         }
-        else if(count($params) == 6){
-            return true;
+        else if(count($params) == 5){
+            if(check_existing_user_address($userid)){
+                $sql = $db->prepare("UPDATE users_data SET zip = ?, city = ?, address = ?, extra = ?, phone = ? WHERE user_id = ?");
+                $sql->bind_param("sssssi", $params["zip"], $params["city"], $params["address"], $params["floor"], $params["phone"], $userid);
+
+                
+
+                return $sql->execute();
+            }else{
+                $sql = $db->prepare("INSERT INTO users_data (user_id,zip,city,address,extra,phone) VALUES(?,?,?,?,?,?)");
+                $sql->bind_param("isssss", $userid, $params["zip"], $params["city"], $params["address"], $params["floor"], $params["phone"]);
+
+                return $sql->execute();
+            }
         }else{
             return false;
         }
     }else{
         return false;
     }
+}
+
+function get_user_address($userid){
+    global $db;
+    $data = [];
+
+    if(check_existing_user_address($userid)){
+
+         $sql = $db->prepare("SELECT zip,city,address,extra,phone FROM users_data WHERE user_id = ?");
+         $sql->bind_param("i", $userid);
+         $sql->execute();
+
+         $result = $sql->get_result();
+
+         if($result->num_rows > 0){
+             $data = $result->fetch_assoc();
+         }
+    }
+
+    return $data;
+}
+
+function get_muffin_by_id($muffin_id){
+    global $db;
+
+    $sql = $db->prepare("SELECT * FROM muffins WHERE muffin_id = ?");
+    $sql->bind_param("i", $muffin_id);
+    $sql->execute();
+
+    $result = $sql->get_result()->fetch_assoc();
+
+    return $result;
+}
+
+function place_order($userid, $order_date, $delivery_mode, $payment_method, $total){
+    global $db;
+    
+    $delivery = $delivery_mode == "personal" ? 1 : 2;
+    $payment = $payment_method == "cash" ? 1 : 2;
+
+    $sql = $db->prepare("INSERT INTO orders (user_id, order_date, delivery_mode, payment_method, total) VALUES(?,?,?,?,?)");
+
+    $sql->bind_param("isiii", $userid, $order_date, $delivery, $payment, $total);
+
+    if($sql->execute()){
+        // lefutott, ezért az order_detailsbe pakoljuk az adatokat
+        foreach(array_unique($_SESSION['cart']) as $cart_item){
+            $product = get_muffin_by_id($cart_item);
+            $product_qty = count(array_keys($_SESSION["cart"], $product["muffin_id"]));
+            insert_order_details($sql->insert_id, $product["muffin_id"], $product_qty);
+        }
+
+        return true;
+    }
+
+    return false;
+}
+
+function insert_order_details($order_id, $product_id, $qty){
+    global $db;
+
+    $sql = $db->prepare("INSERT INTO order_details (order_id, product_id, qty) VALUES(?,?,?)");
+
+    $sql->bind_param("iii", $order_id, $product_id, $qty);
+
+    return $sql->execute();
+}
+
+function get_user_order_history($userid){
+    global $db;
+
+    $sql = $db->prepare("SELECT order_id, order_date, total FROM orders WHERE user_id = ? ORDER BY order_date DESC");
+    $sql->bind_param("i", $userid);
+
+    $sql->execute();
+
+    $result = $sql->get_result();
+
+    return $result;
 }
