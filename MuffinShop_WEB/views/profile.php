@@ -5,6 +5,9 @@ if(!logged_in()){
 }
 include_once 'partials/_header.php';
 include_once 'partials/_navbar.php';
+if(!empty(get_user_address($_SESSION["userid"]))){
+    $address_data = get_user_address($_SESSION["userid"]);
+}
 ?>
 <div class="container">
     <div class="profile-heading text-center mt-5">
@@ -21,7 +24,6 @@ include_once 'partials/_navbar.php';
                         $zip = trim($_POST["zip"]);
                         $city = trim($_POST["city"]);
                         $address = trim($_POST["address"]);
-                        $street_number = trim($_POST["street_number"]);
                         $floor = trim($_POST["floor"]);
                         $phone = trim($_POST["phone"]);
 
@@ -39,10 +41,6 @@ include_once 'partials/_navbar.php';
                             $errors['address'][] = "Kötelező mező!";
                         }
 
-                        if($street_number == null){
-                            $errors['street_number'][] = "Kötelező mező!";
-                        }
-
                         if($phone == null){
                             $errors['phone'] = "Kötelező mező!";
                         }
@@ -53,22 +51,20 @@ include_once 'partials/_navbar.php';
                                     "zip" => $zip,
                                     "city" => $city,
                                     "address" => $address,
-                                    "street_number" => $street_number,
                                     "floor" => $floor,
                                     "phone" => $phone
                                 ];
 
-                                if(change_user_address($params)){
-                                    echo display_success('Sikeres adatmódosítás!');
+                                if(change_user_address($_SESSION["userid"], $params)){
+                                    echo display_success('Sikeres adatmódosítás!'); 
                                 }else{
-                                    echo display_error("Sikertelen");
+                                    echo display_error("Sikertelen adatmódosítás!");
                                 }
                             }else{
                                 $params = [
                                         "zip" => $zip,
                                         "city" => $city,
                                         "address" => $address,
-                                        "street_number" => $street_number,
                                         "phone" => $phone
                                 ];
 
@@ -77,7 +73,7 @@ include_once 'partials/_navbar.php';
                                 if(change_user_address($_SESSION["userid"], $params)){
                                     echo display_success('Sikeres adatmódosítás!');
                                 }else{
-                                    echo display_error("Sikertelen");
+                                    echo display_error("Sikertelen adatmódosítás!");
                                 }
                             }
                         }
@@ -127,29 +123,26 @@ include_once 'partials/_navbar.php';
             <div class="address-form">
                 <div class="form-row delivery-row mx-auto">
                     <div class="form-group col-md-2 ml-auto">
-                        <input type="number" class="form-control<?php echo isset($errors['zip']) ? ' has-error' : ''; ?>" id="zip" placeholder="Irsz" name="zip" value="<?php echo isset($zip) ? $zip : ''; ?>">
+                        <input type="number" class="form-control<?php echo isset($errors['zip']) ? ' has-error' : ''; ?>" id="zip" placeholder="Irsz" name="zip" value="<?php echo isset($address_data) ? $address_data["zip"] : ''; ?>">
                     </div>
                     <div class="form-group col-md-6 mr-auto">
-                        <input type="text" class="form-control<?php echo isset($errors['city']) ? ' has-error' : ''; ?>" id="city" placeholder="Város" name="city" value="<?php echo isset($city) ? $city : ''; ?>">
+                        <input type="text" class="form-control<?php echo isset($errors['city']) ? ' has-error' : ''; ?>" id="city" placeholder="Város" name="city" value="<?php echo isset($address_data) ? $address_data["city"] : ''; ?>">
                     </div>
                 </div>
                 <div class="form-row delivery-row mx-auto">
-                    <div class="form-group col-md-6 ml-auto">
-                        <input type="text" class="form-control<?php echo isset($errors['address']) ? ' has-error' : ''; ?>" id="address" placeholder="Cím" name="address" value="<?php echo isset($address) ? $address : ''; ?>">
-                    </div>
-                    <div class="form-group col-md-2 mr-auto">
-                        <input type="number" class="form-control<?php echo isset($errors['street_number']) ? ' has-error' : ''; ?>" id="street_number" placeholder="Házszám" name="street_number" value="<?php echo isset($street_number) ? $street_number : ''; ?>">
+                    <div class="form-group col-md-8 mx-auto">
+                        <input type="text" class="form-control<?php echo isset($errors['address']) ? ' has-error' : ''; ?>" id="address" placeholder="Cím" name="address" value="<?php echo isset($address_data) ? $address_data["address"] : ''; ?>">
                     </div>
                 </div>
                 <div class="form-row delivery-row mx-auto">
                     <div class="form-group col-md-3 mx-auto">
-                        <input type="text" class="form-control<?php echo isset($errors['floor']) ? ' has-error' : ''; ?>" id="floor" placeholder="Emelet/Ajtó" name="floor" value="<?php echo isset($floor) ? $floor : ''; ?>">
+                        <input type="text" class="form-control<?php echo isset($errors['floor']) ? ' has-error' : ''; ?>" id="floor" placeholder="Emelet/Ajtó" name="floor" value="<?php echo isset($address_data) ? $address_data["extra"] : ''; ?>">
                     </div>
                     <div class="col-md-5"></div>
                 </div>
                 <div class="form-row delivery-row mx-auto">
                     <div class="form-group col-md-8 mx-auto">
-                        <input type="text" class="form-control<?php echo isset($errors['phone']) ? ' has-error' : ''; ?>" id="phone" placeholder="+36701234567" name="phone" value="<?php echo isset($phone) ? $phone : ''; ?>">
+                        <input type="text" class="form-control<?php echo isset($errors['phone']) ? ' has-error' : ''; ?>" id="phone" placeholder="+36701234567" name="phone" value="<?php echo isset($address_data) ? $address_data["phone"] : ''; ?>">
                     </div>
                 </div>
                 <div class="form-row delivery-row mx-auto">
