@@ -3,6 +3,17 @@
 include_once "partials/_header.php";
 include_once "partials/_navbar.php";
 $muffins = get_all_muffins();
+
+if(isset($_GET["order_success"])){
+  switch($_GET["order_success"]){
+    case "0":
+      echo display_error("Hiba történt a rendelés közben!");
+    break;
+    case "1":
+      echo display_success("Rendelését sikeresen fogadtuk!");
+    break;
+  }
+}
 ?>
 <div class="container">
   <div class="row mt-5">
