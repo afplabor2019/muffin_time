@@ -4,14 +4,14 @@
 		<?php
 			if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_to_cart"])){
 				array_push($_SESSION['cart'], $muffin["muffin_id"]);
-				redirect('cart');
+				redirect('cart', ['item_added' => 1]);
 			}
 		?>
 			<form method="POST">
 				<div class="wrapper row">
 					<div class="preview col-md-6">
 						<div class="preview-pic tab-content">
-							<div class="tab-pane active product-img" ><img src="<?php echo asset('img/default_muffin.png'); ?>"/></div>
+							<div class="tab-pane active product-img"><img src="<?php echo asset('img/default_muffin.png'); ?>"/></div>
 						</div>
 					</div>
 					<div class="details col-md-6">
