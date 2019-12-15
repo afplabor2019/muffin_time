@@ -70,7 +70,7 @@ function display_error($message){
 
 function get_all_muffins(){
     global $db;
-
+    
     $sql = $db->prepare("SELECT * FROM muffins");
     $sql->execute();
 
@@ -241,7 +241,7 @@ function get_muffin_by_id($muffin_id){
     return $result;
 }
 
-function place_order($userid, $order_date, $delivery_mode, $payment_method, $total){
+function place_order($userid, $order_date, $delivery_mode, $payment_method, $total, $comment){
     global $db;
     
     $delivery = $delivery_mode == "personal" ? 1 : 2;
@@ -256,7 +256,7 @@ function place_order($userid, $order_date, $delivery_mode, $payment_method, $tot
         foreach(array_unique($_SESSION['cart']) as $cart_item){
             $product = get_muffin_by_id($cart_item);
             $product_qty = count(array_keys($_SESSION["cart"], $product["muffin_id"]));
-            insert_order_details($sql->insert_id, $product["muffin_id"], $product_qty);
+            insert_order_details($sql->insert_id, $product["muffin_id"], $product_qty, $comment);
         }
 
         return true;
@@ -265,12 +265,12 @@ function place_order($userid, $order_date, $delivery_mode, $payment_method, $tot
     return false;
 }
 
-function insert_order_details($order_id, $product_id, $qty){
+function insert_order_details($order_id, $product_id, $qty, $comment){
     global $db;
 
-    $sql = $db->prepare("INSERT INTO order_details (order_id, product_id, qty) VALUES(?,?,?)");
+    $sql = $db->prepare("INSERT INTO order_details (order_id, product_id, qty, comment) VALUES(?,?,?,?)");
 
-    $sql->bind_param("iii", $order_id, $product_id, $qty);
+    $sql->bind_param("iiis", $order_id, $product_id, $qty, $comment);
 
     return $sql->execute();
 }
@@ -284,6 +284,109 @@ function get_user_order_history($userid){
     $sql->execute();
 
     $result = $sql->get_result();
+
+    return $result;
+}
+
+function get_user_order_by_id($userid, $order_id){
+    global $db;
+    
+    $sql = $db->prepare("SELECT o.order_id, o.order_date, o.delivery_mode, o.payment_method, o.total, od.product_id, od.qty, od.comment FROM orders o INNER JOIN order_details od ON o.order_id = od.order_id WHERE o.order_id = ? AND o.user_id = ?");
+
+    $sql->bind_param("ii", $order_id, $userid);
+
+    $sql->execute();
+
+    $result = $sql->get_result();
+    return $result;
+
+}
+
+function filter_muffins($price_array){
+    global $db;
+
+    if(is_array($price_array)){
+        $min_price = $price_array["min_price"];
+        $max_price = $price_array["max_price"];
+
+        if($min_price != null && $max_price != null){
+            $sql = $db->prepare("SELECT * FROM muffins WHERE muffin_price >= ? AND muffin_price <= ?");
+            $sql->bind_param("ii", $min_price, $max_price);
+            $sql->execute();
+
+            $result = $sql->get_result();
+
+            return $result;
+        }else{
+            if($min_price == null){
+                $sql = $db->prepare("SELECT * FROM muffins WHERE muffin_price <= ?");
+                $sql->bind_param("i", $max_price);
+                $sql->execute();
+                $result = $sql->get_result();
+
+                return $result;
+            }
+            if($max_price == null){
+                $sql = $db->prepare("SELECT * FROM muffins WHERE muffin_price >= ?");
+                $sql->bind_param("i", $min_price);
+                $sql->execute();
+
+                $result = $sql->get_result();
+
+                return $result;
+            }
+        }
+        return null;
+    }
+
+    return null;
+}
+
+function add_qty_to_cart($product_id){
+    if(existing_product($product_id)){
+        array_push($_SESSION['cart'], $product_id);
+    }
+}
+
+function remove_qty_from_cart($product_id){
+    if (($key = array_search($product_id, $_SESSION['cart'])) !== false) {
+        unset($_SESSION['cart'][$key]);
+    }
+}
+
+function existing_product($product_id){
+    global $db;
+
+    $sql = $db->prepare("SELECT * FROM muffins WHERE muffin_id = ?");
+    $sql->bind_param("i",$product_id);
+
+    $sql->execute();
+
+    $result = $sql->get_result();
+
+    return $result->num_rows > 0;
+}
+
+function get_delivery_name($delivery_id){
+    global $db;
+
+    $sql = $db->prepare("SELECT delivery_name FROM delivery WHERE delivery_id = ?");
+    $sql->bind_param("i", $delivery_id);
+    $sql->execute();
+
+    $result = $sql->get_result()->fetch_assoc();
+
+    return $result;
+}
+
+function get_payment_name($payment_id){
+    global $db;
+
+    $sql = $db->prepare("SELECT payment_method FROM payment WHERE payment_id = ?");
+    $sql->bind_param("i", $payment_id);
+    $sql->execute();
+
+    $result = $sql->get_result()->fetch_assoc();
 
     return $result;
 }
