@@ -1,5 +1,6 @@
 <?php
 session_start();
+header("Content-type: text/html; charset=utf-8");
 define('APP_MODE', 'DEBUG');
 
 include_once 'config.php';
