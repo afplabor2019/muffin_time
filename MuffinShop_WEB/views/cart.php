@@ -8,6 +8,15 @@ if(!logged_in()){
 if(isset($_GET["item_added"])){
     echo display_success("A termék a kosárba került!");
 }
+if(isset($_GET["add_item"])){
+  $product_id = $_GET["add_item"];
+  add_qty_to_cart($product_id);
+}
+
+if(isset($_GET["remove_item"])){
+  $product_id = $_GET["remove_item"];
+  remove_qty_from_cart($product_id);
+}
 ?>
 <div class="container">
     <div class="order-notice mt-4">
@@ -44,12 +53,12 @@ if(isset($_GET["item_added"])){
 
             if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["order_submit"])){
               if(check_existing_user_address($_SESSION["userid"])){
-                // adat felvitele adatbázisba
-                // kosár ürítése
+
                 $userid = $_SESSION["userid"];
                 $order_date = date("Y-m-d H:i:s");
                 $delivery_mode = trim($_POST["deliveryMode"]);
                 $payment_method = trim($_POST["paymentMethod"]);
+                $comment = trim($_POST["comment"]);
 
                 $total = 0;
 
@@ -58,7 +67,7 @@ if(isset($_GET["item_added"])){
                     $product_qty = count(array_keys($_SESSION["cart"], $product["muffin_id"]));
                     $total += $product_qty * $product["muffin_price"];
 
-                    if(place_order($userid, $order_date, $delivery_mode, $payment_method, $total)){
+                    if(place_order($userid, $order_date, $delivery_mode, $payment_method, $total, $comment)){
                       $_SESSION['cart'] = array();
                       redirect('home', ["order_success" => 1]);
                     }else{
@@ -110,7 +119,11 @@ if(isset($_GET["item_added"])){
                     </div>
                   </th>
                   <td class="border-0 align-middle"><strong><?=$product["muffin_price"]?></strong> Ft</td>
-                  <td class="border-0 align-middle"><strong><?=$product_qty?></strong></td>
+                  <td class="border-0 align-middle">
+                  <?php if($product_qty > 1): ?>
+                    <a href="<?php echo url('cart', ["remove_item" => $product["muffin_id"]]); ?>" class="cart-qty-decrease">-</a>
+                  <?php endif; ?>
+                    <strong><?=$product_qty?></strong> <a href="<?php echo url('cart', ["add_item" => $product["muffin_id"]]); ?>" class="cart-qty-increase">+</a></td>
                   <td class="border-0 align-middle"><a href="<?php echo url('cart', ["action" => "delete_item", "product_id" => $product['muffin_id']]); ?>"><i class="fa fa-trash"></i></a></td>
                 </tr>
                 <?php endforeach; ?>
@@ -135,7 +148,7 @@ if(isset($_GET["item_added"])){
             </div>
           <div class="p-4">
             <p class="font-italic mb-4">Kérjük amennyiben bármilyen megjegyzése, kérése van írja le nekünk.</p>
-            <textarea name="" cols="30" rows="2" class="form-control"></textarea>
+            <textarea name="comment" cols="30" rows="2" class="form-control"></textarea>
           </div>
         </div>
       </div>
@@ -157,7 +170,6 @@ if(isset($_GET["item_added"])){
     </form>
 </div>
 <?php endif; ?>
-
 <?php
     include_once 'partials/_footer.php';
 ?>
