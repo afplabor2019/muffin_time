@@ -126,3 +126,17 @@ body{
 input.has-error{
     border: 1px solid red;
 }
+
+.cart-qty-decrease, .cart-qty-increase{
+    display: inline-block;
+    font-size: larger;
+    margin: 0 5px 0 5px;
+}
+
+.cart-qty-decrease:hover, .cart-qty-increase:hover{
+    text-decoration: none;
+}
+
+span.light-text{
+    font-weight: normal !important;
+}
