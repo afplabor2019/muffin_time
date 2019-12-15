@@ -14,6 +14,22 @@ if(isset($_GET["order_success"])){
     break;
   }
 }
+
+$min_price = null;
+$max_price = null;
+
+if(isset($_GET["min_price"])){
+  $min_price = $_GET["min_price"];
+}
+
+if(isset($_GET["max_price"])){
+  $max_price = $_GET["max_price"];
+}
+
+if($min_price != null || $max_price != null){
+  $muffins = filter_muffins(["min_price" => $min_price, "max_price" => $max_price]);
+}
+
 ?>
 <div class="container">
   <div class="row mt-5">
@@ -21,25 +37,16 @@ if(isset($_GET["order_success"])){
       <div class="search-filter">
         <h3 class="text-center m-4">Termékek szűrése</h3>
         <hr class="filter-divider">
-        <div class="delivery-mode">
-          <p class="filter-name font-weight-bold">Szállítás módja</p>
-          <div class="delivery-mode-option">
-            <label><input type="checkbox" name="pickup" id="pickup"> Személyes átvétel</label>
-          </div>
-          <div class="delivery-mode-option">
-            <label><input type="checkbox" name="homedelivery" id="homedelivery"> Kiszállítás</label>
-          </div>
-        </div>
-        <hr class="filter-divider">
         <div class="price-range">
           <div class="price-range-selector">
             <label for="min_price">Min ár:</label>
-            <input type="number" class="form-control priceinput" name="min_price" id="min_price">
+            <input type="number" class="form-control priceinput" name="min_price" id="min_price" value="<?php echo $min_price != null ? $min_price :  ''; ?>">
           </div>
           <div class="price-range-selector">
             <label for="max_price">Max ár:</label>
-            <input type="number" class="form-control priceinput" name="max_price" id="max_price">
+            <input type="number" class="form-control priceinput" name="max_price" id="max_price" value="<?php echo $max_price != null ? $max_price :  ''; ?>">
           </div>
+          <button type="submit" name="filterSubmit" class="btn btn-primary" id="filterSubmit">Szűrés</button>
           <hr class="filter-divider">
         </div>
       </div>
@@ -47,19 +54,29 @@ if(isset($_GET["order_success"])){
     <div class="col-md-8">
       <div class="product-listing">
         <?php
-        if($muffins != null){
+        if($muffins->num_rows == 0){
+          echo "<h2 class='text-center'>Nincs a keresési feltételeknek megfelelő termék!</h2>";
+        }
+        else{
           foreach($muffins as $muffin){
             include 'partials/_muffin_item.php';
           }
-        }
-        else{
-          echo "<h2 class='text-center'>Nincs megjeleníthető termék!</h2>";
         }
         ?>
       </div>
     </div>
   </div>
 </div>
+<script>
+let filterButton = document.getElementById('filterSubmit');
+
+filterButton.addEventListener('click', (e) => {
+    let minPrice = document.getElementById('min_price').value;
+    let maxPrice = document.getElementById('max_price').value;
+
+    window.location.href = '?p=home&min_price='+minPrice+'&max_price='+maxPrice;
+})
+</script>
 <?php
 include_once "partials/_footer.php";
 ?>
