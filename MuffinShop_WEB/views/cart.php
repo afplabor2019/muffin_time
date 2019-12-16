@@ -17,6 +17,8 @@ if(isset($_GET["remove_item"])){
   $product_id = $_GET["remove_item"];
   remove_qty_from_cart($product_id);
 }
+
+$total = 0;
 ?>
 <div class="container">
     <div class="order-notice mt-4">
@@ -31,7 +33,7 @@ if(isset($_GET["remove_item"])){
         <?php
             if(count($_SESSION['cart']) == 0):
         ?>
-        <h2 class='text-center mt-3'>A kosarad üres!</h2>
+                      <h2 class='text-center mt-3'>A kosarad üres!</h2>
                     </div>
                 </div>
             </div>
@@ -58,16 +60,13 @@ if(isset($_GET["remove_item"])){
                 $order_date = date("Y-m-d H:i:s");
                 $delivery_mode = trim($_POST["deliveryMode"]);
                 $payment_method = trim($_POST["paymentMethod"]);
+                $total_value = trim($_POST["total_value"]);
                 $comment = trim($_POST["comment"]);
-
-                $total = 0;
 
                 foreach(array_unique($_SESSION['cart']) as $cart_item){
                     $product = get_muffin_by_id($cart_item);
-                    $product_qty = count(array_keys($_SESSION["cart"], $product["muffin_id"]));
-                    $total += $product_qty * $product["muffin_price"];
-
-                    if(place_order($userid, $order_date, $delivery_mode, $payment_method, $total, $comment)){
+                    $product_qty = count(array_keys($_SESSION["cart"], $cart_item));
+                    if(place_order($userid, $order_date, $delivery_mode, $payment_method, $total_value, $comment)){
                       $_SESSION['cart'] = array();
                       redirect('home', ["order_success" => 1]);
                     }else{
@@ -79,7 +78,6 @@ if(isset($_GET["remove_item"])){
               }
             }
         ?>
-        <?php $total = 0; ?>
         <form method="POST" action="<?php echo url('cart'); ?>">
           <div class="table-responsive">
             <table class="table">
@@ -167,6 +165,7 @@ if(isset($_GET["remove_item"])){
         </div>
       </div>
     </div>
+    <input type="hidden" name="total_value" value="<?=$total?>">
     </form>
 </div>
 <?php endif; ?>
