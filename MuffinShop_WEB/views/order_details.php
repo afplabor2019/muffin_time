@@ -6,12 +6,12 @@ if(!logged_in() || !isset($_GET["order_id"])){
     redirect('home');
 }
 $order_history = get_user_order_by_id($_SESSION["userid"], $_GET["order_id"]);
-$total = 0;
+$comment = null;
 ?>
 
-<div class="container">
-    <?php if($order_history == null) : ?>
-        <h1 class="text-center">Nincs megjeleníthető rendelés!</h1>
+<div class="container mt-5">
+    <?php if($order_history->num_rows <= 0) : ?>
+        <h1 class="text-center">Nincs ilyen megrendelés</h1>
     <?php else: ?>
     <div class="table-responsive mt-5">
         <table class="table table-hover">
@@ -34,9 +34,10 @@ $total = 0;
             <tbody>
                 <?php while($order_data = $order_history->fetch_assoc()): ?>
                 <?php $product_data = get_muffin_by_id($order_data["product_id"]); ?>
-                <?php $total += $order_data["total"]; ?>
+                <?php $total = $order_data["total"]; ?>
                 <?php $payment = $order_data["payment_method"]; ?>
                 <?php $delivery = $order_data["delivery_mode"]; ?>
+                <?php $comment = $order_data["comment"]; ?>
                 <tr>
                     <td class="align-middle">
                         <div class="p-2">
@@ -72,6 +73,7 @@ $total = 0;
         </table>
     </div>
     
+    <h6 class="mb-0 mr-5 text-right"><b>Megjegyzés:</b> <span class="light-text"><?php echo $comment == null ? "nincs" : $comment; ?></span></h6>
     <h6 class="mb-0 mr-5 text-right"><b>Fizetés módja:</b> <span class="light-text"><?=get_payment_name($payment)["payment_method"]?></span></h6>
     <h6 class="mb-0 mr-5 text-right"><b>Szállítás módja:</b> <span class="light-text"><?=get_delivery_name($delivery)["delivery_name"]?></span></h6>
     <h6 class="mb-0 mr-5 text-right"><b>Összesen:</b> <span class="light-text"><?=$total?> Ft</span></h6>
