@@ -31,6 +31,8 @@ $history = get_user_order_history($_SESSION["userid"]);
         <tbody>
         <?php
             while($order_history = $history->fetch_assoc()):
+                $total = 0;
+                $total += $order_history["total"];
         ?>
         <tr>
             <th scope="row" class="border-0">
@@ -42,7 +44,7 @@ $history = get_user_order_history($_SESSION["userid"]);
             </div>
             </th>
             <td class="border-0 align-middle"><strong><?=$order_history["order_date"]?></strong></td>
-            <td class="border-0 align-middle"><strong><?=$order_history["total"]?></strong> Ft</td>
+            <td class="border-0 align-middle"><strong><?=$total?></strong> Ft</td>
         </tr>
         <?php endwhile; ?>
         </tbody>
