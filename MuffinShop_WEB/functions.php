@@ -252,7 +252,6 @@ function place_order($userid, $order_date, $delivery_mode, $payment_method, $tot
     $sql->bind_param("isiii", $userid, $order_date, $delivery, $payment, $total);
 
     if($sql->execute()){
-        // lefutott, ezért az order_detailsbe pakoljuk az adatokat
         foreach(array_unique($_SESSION['cart']) as $cart_item){
             $product = get_muffin_by_id($cart_item);
             $product_qty = count(array_keys($_SESSION["cart"], $product["muffin_id"]));
