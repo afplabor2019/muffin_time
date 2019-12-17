@@ -8,6 +8,16 @@ include_once 'partials/_navbar.php';
 if(!empty(get_user_address($_SESSION["userid"]))){
     $address_data = get_user_address($_SESSION["userid"]);
 }
+if(isset($_GET["change_address"])){
+    switch($_GET["change_address"]){
+        case "0":
+            echo display_error("Sikertelen adatmódosítás!");
+        break;
+        case "1":
+            echo display_success('Sikeres adatmódosítás!'); 
+        break;
+    }
+}
 ?>
 <div class="container">
     <div class="profile-heading text-center mt-5">
@@ -29,12 +39,14 @@ if(!empty(get_user_address($_SESSION["userid"]))){
 
                         if($zip == null){
                             $errors['zip'][] = "Kötelező mező!";
-                        }else{
-                            // ajax, megnézni, hogy létezik-e
                         }
 
                         if($city == null){
                             $errors['city'][] = "Kötelező mező!";
+                        }else{
+                            if($city == "Hibás irányítószám!"){
+                                $errors['city'][] = "Hibás adat!";
+                            }
                         }
 
                         if($address == null){
@@ -56,9 +68,9 @@ if(!empty(get_user_address($_SESSION["userid"]))){
                                 ];
 
                                 if(change_user_address($_SESSION["userid"], $params)){
-                                    echo display_success('Sikeres adatmódosítás!'); 
+                                    redirect('profile', ['change_address' => 1]);
                                 }else{
-                                    echo display_error("Sikertelen adatmódosítás!");
+                                    redirect('profile', ['change_address' => 0]);
                                 }
                             }else{
                                 $params = [
@@ -71,9 +83,9 @@ if(!empty(get_user_address($_SESSION["userid"]))){
 
      
                                 if(change_user_address($_SESSION["userid"], $params)){
-                                    echo display_success('Sikeres adatmódosítás!');
+                                    redirect('profile', ['change_address' => 1]);
                                 }else{
-                                    echo display_error("Sikertelen adatmódosítás!");
+                                    redirect('profile', ['change_address' => 0]);
                                 }
                             }
                         }
@@ -123,10 +135,10 @@ if(!empty(get_user_address($_SESSION["userid"]))){
             <div class="address-form">
                 <div class="form-row delivery-row mx-auto">
                     <div class="form-group col-md-2 ml-auto">
-                        <input type="number" class="form-control<?php echo isset($errors['zip']) ? ' has-error' : ''; ?>" id="zip" placeholder="Irsz" name="zip" value="<?php echo isset($address_data) ? $address_data["zip"] : ''; ?>">
+                        <input type="number" class="form-control<?php echo isset($errors['zip']) ? ' has-error' : ''; ?>" id="zip" placeholder="Irsz" name="zip" id="zip" value="<?php echo isset($address_data) ? $address_data["zip"] : ''; ?>">
                     </div>
                     <div class="form-group col-md-6 mr-auto">
-                        <input type="text" class="form-control<?php echo isset($errors['city']) ? ' has-error' : ''; ?>" id="city" placeholder="Város" name="city" value="<?php echo isset($address_data) ? $address_data["city"] : ''; ?>">
+                        <input type="text" class="form-control<?php echo isset($errors['city']) ? ' has-error' : ''; ?>" id="city" placeholder="Város" name="city" value="<?php echo isset($address_data) ? $address_data["city"] : ''; ?>" readonly>
                     </div>
                 </div>
                 <div class="form-row delivery-row mx-auto">
@@ -183,8 +195,6 @@ if(!empty(get_user_address($_SESSION["userid"]))){
         </form>
     </div>
 </div>
-
-
 <?php
 include_once 'partials/_footer.php';
 ?>
