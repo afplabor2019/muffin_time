@@ -73,10 +73,20 @@ $comment = null;
         </table>
     </div>
     
-    <h6 class="mb-0 mr-5 text-right"><b>Megjegyzés:</b> <span class="light-text"><?php echo $comment == null ? "nincs" : $comment; ?></span></h6>
-    <h6 class="mb-0 mr-5 text-right"><b>Fizetés módja:</b> <span class="light-text"><?=get_payment_name($payment)["payment_method"]?></span></h6>
-    <h6 class="mb-0 mr-5 text-right"><b>Szállítás módja:</b> <span class="light-text"><?=get_delivery_name($delivery)["delivery_name"]?></span></h6>
-    <h6 class="mb-0 mr-5 text-right"><b>Összesen:</b> <span class="light-text"><?=$total?> Ft</span></h6>
+    <h6 class="mb-0 mr-5 text-left"><b>Megjegyzés:</b> 
+        <span class="light-text">
+            <?php echo $comment == null ? "nincs" : $comment; ?>
+        </span>
+    </h6>
+    <h6 class="mb-0 mr-5 text-left"><b>Fizetés módja:</b>
+        <span class="light-text"><?=get_payment_name($payment)["payment_method"]?></span>
+    </h6>
+    <h6 class="mb-0 mr-5 text-left"><b>Szállítás módja:</b>
+        <span class="light-text"><?=get_delivery_name($delivery)["delivery_name"]?></span>
+    </h6>
+    <h5 class="mb-0 mr-5 text-right"><b>Összesen:</b>
+        <span class="light-text"><?=$total?> Ft</span>
+    </h5>
 
     <?php endif; ?>
 </div>
