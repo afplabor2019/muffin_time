@@ -15,15 +15,25 @@ if(isset($_GET["order_success"])){
   }
 }
 
+$errors = [];
+
 $min_price = null;
 $max_price = null;
 
-if(isset($_GET["min_price"])){
-  $min_price = $_GET["min_price"];
+if(isset($_GET["min_price"]) && $_GET["min_price"] != ""){
+  if(!is_numeric($_GET["min_price"])){
+    $errors['min_price'][] = "A megadott érték nem szám!";
+  }else{
+    $min_price = $_GET["min_price"];
+  }
 }
 
-if(isset($_GET["max_price"])){
-  $max_price = $_GET["max_price"];
+if(isset($_GET["max_price"]) && $_GET["max_price"] != ""){
+  if(!is_numeric($_GET["max_price"])){
+    $errors['max_price'][] = "A megadott érték nem szám!";
+  }else{
+    $max_price = $_GET["max_price"];
+  }
 }
 
 if($min_price != null || $max_price != null){
@@ -40,11 +50,11 @@ if($min_price != null || $max_price != null){
         <div class="price-range">
           <div class="price-range-selector">
             <label for="min_price">Min ár:</label>
-            <input type="number" class="form-control priceinput" name="min_price" id="min_price" value="<?php echo $min_price != null ? $min_price :  ''; ?>">
+            <input type="number" class="form-control priceinput<?php echo isset($errors['min_price']) ? ' has-error' : ''; ?>" name="min_price" id="min_price" min="0" max="9999" value="<?php echo $min_price != null ? $min_price :  ''; ?>" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
           </div>
           <div class="price-range-selector">
             <label for="max_price">Max ár:</label>
-            <input type="number" class="form-control priceinput" name="max_price" id="max_price" value="<?php echo $max_price != null ? $max_price :  ''; ?>">
+            <input type="number" class="form-control priceinput<?php echo isset($errors['max_price']) ? ' has-error' : ''; ?>" name="max_price" id="max_price" min="0" max="9999" value="<?php echo $max_price != null ? $max_price :  ''; ?>" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
           </div>
           <button type="submit" name="filterSubmit" class="btn btn-primary" id="filterSubmit">Szűrés</button>
           <hr class="filter-divider">
