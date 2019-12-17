@@ -9,13 +9,20 @@ if(isset($_GET["item_added"])){
     echo display_success("A termék a kosárba került!");
 }
 if(isset($_GET["add_item"])){
-  $product_id = $_GET["add_item"];
-  add_qty_to_cart($product_id);
+  foreach(array_unique($_SESSION['cart']) as $cart_item){
+    $product = get_muffin_by_id($cart_item);
+    $product_qty = count(array_keys($_SESSION["cart"], $cart_item));
+
+    if($product_qty > 0 && $product_qty < 10){
+      $product_id = $_GET["add_item"];
+      add_qty_to_cart($product_id);
+    }
+  }
 }
 
 if(isset($_GET["remove_item"])){
-  $product_id = $_GET["remove_item"];
-  remove_qty_from_cart($product_id);
+    $product_id = $_GET["remove_item"];
+    remove_qty_from_cart($product_id);
 }
 
 $total = 0;
@@ -121,7 +128,11 @@ $total = 0;
                   <?php if($product_qty > 1): ?>
                     <a href="<?php echo url('cart', ["remove_item" => $product["muffin_id"]]); ?>" class="cart-qty-decrease">-</a>
                   <?php endif; ?>
-                    <strong><?=$product_qty?></strong> <a href="<?php echo url('cart', ["add_item" => $product["muffin_id"]]); ?>" class="cart-qty-increase">+</a></td>
+                    <strong><?=$product_qty?></strong> 
+                    <?php if($product_qty < 10): ?>
+                      <a href="<?php echo url('cart', ["add_item" => $product["muffin_id"]]); ?>" class="cart-qty-increase">+</a>
+                    <?php endif; ?>
+                    </td>
                   <td class="border-0 align-middle"><a href="<?php echo url('cart', ["action" => "delete_item", "product_id" => $product['muffin_id']]); ?>"><i class="fa fa-trash"></i></a></td>
                 </tr>
                 <?php endforeach; ?>
