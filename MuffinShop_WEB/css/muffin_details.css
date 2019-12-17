@@ -157,3 +157,9 @@
               transform: scale(1); } }
   
   /*# sourceMappingURL=style.css.map */
+
+  .qtyCartInput{
+    display: inline-block;
+    width: 15% !important; 
+    margin: 0 10px 0 0;
+  }
