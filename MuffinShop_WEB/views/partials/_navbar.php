@@ -27,6 +27,11 @@
           <a class="dropdown-item" href="<?php echo url('profile'); ?>">Beállításaim</a>
           <a class="dropdown-item" href="<?php echo url('history'); ?>">Korábbi rendeléseim</a>
           <div class="dropdown-divider"></div>
+          <?php if($userdata["role"] == "admin"): ?>
+            <a class="dropdown-item" href="<?php echo url('admin_add_product'); ?>">Új termék felvitele</a>
+            <a class="dropdown-item" href="<?php echo url('admin_list_products'); ?>">Termékek kezelése</a>
+          <?php endif; ?>
+          <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="<?php echo url('logout'); ?>">Kilépés</a>
         </div>
       </li>
