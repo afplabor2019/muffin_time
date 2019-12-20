@@ -12,6 +12,23 @@ if(isset($_GET["order_success"])){
     case "1":
       echo display_success("Rendelését sikeresen fogadtuk!");
     break;
+    default:
+      echo display_error("Hiba történt a rendelés közben!");
+    break;
+  }
+}
+
+if(isset($_GET["insert_muffin"])){
+  switch($_GET["insert_muffin"]){
+    case "0":
+      echo display_error("Sikertelen termékfeltöltés!");
+    break;
+    case "1":
+      echo display_success("Sikeres termékfeltöltés!");
+    break;
+    default:
+      echo display_error("Sikertelen termékfeltöltés!");
+    break;
   }
 }
 
