@@ -3,6 +3,12 @@ session_start();
 header("Content-type: text/html; charset=utf-8");
 define('APP_MODE', 'DEBUG');
 
+if(APP_MODE == "DEBUG"){
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+}
+
 include_once 'config.php';
 include_once 'functions.php';
 
