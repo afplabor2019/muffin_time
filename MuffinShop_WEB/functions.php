@@ -390,11 +390,11 @@ function get_payment_name($payment_id){
     return $result;
 }
 
-function insert_muffin($muffin_name, $muffin_description, $muffin_price, $muffin_img = null){
+function insert_muffin($muffin_name, $muffin_description, $muffin_price){
     global $db;
 
-    $sql = $db->prepare("INSERT INTO muffins (muffin_name, muffin_description, muffin_price, muffin_img) VALUES(?,?,?,?)");
-    $sql->bind_param("ssis", $muffin_name, $muffin_description, $muffin_price, $muffin_img);
+    $sql = $db->prepare("INSERT INTO muffins (muffin_name, muffin_description, muffin_price) VALUES(?,?,?)");
+    $sql->bind_param("ssi", $muffin_name, $muffin_description, $muffin_price);
     
     return $sql->execute();
 }
