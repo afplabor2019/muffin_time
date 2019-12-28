@@ -29,7 +29,7 @@
 				<div class="wrapper row">
 					<div class="preview col-md-6">
 						<div class="preview-pic tab-content">
-							<div class="tab-pane active product-img"><img src="<?php echo $muffin["muffin_img"] != null ? "muffins/". $muffin["muffin_img"] : "img/default_muffin.png"; ?>"/></div>
+							<div class="tab-pane active product-img"><img src="img/default_muffin.png"/></div>
 						</div>
 					</div>
 					<div class="details col-md-6">
