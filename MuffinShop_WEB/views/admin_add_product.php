@@ -66,52 +66,11 @@ if($userdata["role"] != "admin"){
                             }
                         }
 
-                        if($muffin_img != null){
-                            if($muffin_img["size"] > 0){
-
-                                $muffin_img_target_dir = BASE_PATH . '/muffins/';
-                                $muffin_img_target_name = $muffin_name . "." . explode('.', trim(basename($muffin_img["name"])))[1];
-                                $filename = strtolower(str_replace(' ', '', $muffin_img_target_name));
-                                
-                                $muffin_img_target_file = $muffin_img_target_dir . $filename;
-                            
-                                $imgExt = strtolower(pathinfo($muffin_img_target_file, PATHINFO_EXTENSION));
-                                
-                                if(file_exists($muffin_img_target_file)){
-                                    $errors["muffin_img"][] = "A fájl már létezik!";
-                                }else{
-                                    if($muffin_img["size"] > (MAX_UPLOAD_SIZE * 1000000)){
-                                        $errors["muffin_img"][] = "Maximum méret: {MAX_UPLOAD_SIZE}MB!";
-                                    }else{
-                                        $img_allowed_exts = ["jpg","png","jpeg","gif"];
-                            
-                                        if(!in_array($imgExt, $img_allowed_exts)){
-                                            $errors["muffin_img"][] = "Nem engedélyezett fájltípus! Engedélyezett típusok: " . implode(", ", $img_allowed_exts);
-                                        }
-                                    }
-                                }
-                            }else{
-                                $errors['muffin_img'][] = "Hibás fájlméret!";
-                            }
-                        }
-
                         if(count($errors) == 0){
-                            if($muffin_img == null){
-                                if(insert_muffin($muffin_name, $muffin_description, $muffin_price)){
-                                    redirect('home', ['insert_muffin' => 1]);
-                                }else{
-                                    redirect('home', ['insert_muffin' => 0]);
-                                }
+                            if(insert_muffin($muffin_name, $muffin_description, $muffin_price)){
+                                redirect('home', ['insert_muffin' => 1]);
                             }else{
-                                if(move_uploaded_file($muffin_img["tmp_name"], $muffin_img_target_file)){
-                                    if(insert_muffin($muffin_name, $muffin_description, $muffin_price, $filename)){
-                                        redirect('home', ["insert_muffin" => 1]);
-                                    }else{
-                                        redirect('home', ['insert_muffin' => 0]);
-                                    }
-                                }else{
-                                    redirect('home', ['insert_muffin' => 0]);
-                                }
+                                redirect('home', ['insert_muffin' => 0]);
                             }
                         }
                     }
@@ -139,12 +98,6 @@ if($userdata["role"] != "admin"){
                         <?php echo display_errors('muffin_price'); ?>
                     </div>
                     <div class="col-md-5"></div>
-                </div>
-                <div class="form-row delivery-row mx-auto">
-                    <div class="form-group col-md-8 mx-auto">
-                        <input type="file" name="muffin_img" class="form-control">
-                        <?php echo display_errors('muffin_img'); ?>
-                    </div>
                 </div>
                 <div class="form-row delivery-row mx-auto">
                     <div class="form-group col-md-8 mx-auto">
