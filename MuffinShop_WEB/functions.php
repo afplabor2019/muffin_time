@@ -398,3 +398,12 @@ function insert_muffin($muffin_name, $muffin_description, $muffin_price){
     
     return $sql->execute();
 }
+
+function delete_muffin($muffin_id){
+    global $db;
+
+    $sql = $db->prepare("DELETE FROM muffins WHERE muffin_id = ?");
+    $sql->bind_param("i", $muffin_id);
+
+    return $sql->execute();
+}
