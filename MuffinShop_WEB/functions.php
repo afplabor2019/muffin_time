@@ -399,6 +399,17 @@ function insert_muffin($muffin_name, $muffin_description, $muffin_price){
     return $sql->execute();
 }
 
+function update_muffin($muffin_id, $muffin_name, $muffin_description, $muffin_price){
+    global $db;
+
+    $sql = $db->prepare("UPDATE muffins SET muffin_name = ?, muffin_description = ?, muffin_price = ? WHERE muffin_id = ?");
+    $sql->bind_param("ssii", $muffin_name, $muffin_description, $muffin_price, $muffin_id);
+    
+    $sql->execute();
+
+    return $sql->affected_rows > 0;
+}
+
 function delete_muffin($muffin_id){
     global $db;
 
