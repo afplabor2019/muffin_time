@@ -27,7 +27,6 @@ if($userdata["role"] != "admin"){
                         $muffin_name = trim($_POST["muffin_name"]);
                         $muffin_description = trim($_POST["muffin_description"]);
                         $muffin_price = trim($_POST["muffin_price"]);
-                        $muffin_img = isset($_FILES["muffin_img"]) ? $_FILES["muffin_img"] : null;
 
                         if($muffin_name == null){
                             $errors['muffin_name'][] = "Kötelező mező!";
@@ -58,9 +57,9 @@ if($userdata["role"] != "admin"){
                             if(!is_numeric($muffin_price)){
                                 $errors['muffin_price'][] = "Csak számot írj be!";
                             }else{
-                                $min_muffin_price = 0;
+                                $min_muffin_price = 1;
                                 $max_muffin_price = 9999;
-                                if($muffin_price <= $min_muffin_price || $muffin_price >= $max_muffin_price){
+                                if($muffin_price < $min_muffin_price || $muffin_price > $max_muffin_price){
                                     $errors['muffin_price'][] = "Az érték {$min_muffin_price} és {$max_muffin_price} kell legyen!";
                                 }
                             }
@@ -94,7 +93,7 @@ if($userdata["role"] != "admin"){
                 </div>
                 <div class="form-row delivery-row mx-auto">
                     <div class="form-group col-md-3 mx-auto">
-                        <input type="number" min="1" max="9999" class="form-control<?php echo isset($errors['muffin_price']) ? ' has-error' : ''; ?>" placeholder="Ár" name="muffin_price" value="<?php echo isset($muffin_price) ? $muffin_price : ''; ?>" value="<?php echo isset($muffin_price) ? $muffin_price : "1"; ?>">
+                        <input type="number" min="1" max="9999" class="form-control<?php echo isset($errors['muffin_price']) ? ' has-error' : ''; ?>" placeholder="Ár" name="muffin_price" value="<?php echo isset($muffin_price) ? $muffin_price : ''; ?>">
                         <?php echo display_errors('muffin_price'); ?>
                     </div>
                     <div class="col-md-5"></div>
