@@ -65,6 +65,9 @@ if(isset($_GET["action"]) && isset($_GET["product_id"])){
         </tr>
         </thead>
         <tbody>
+            <?php if($muffins->num_rows <= 0): ?>
+                <h1 class="text-center">Nincsen termék az adatbázisban!</h1>
+            <?php endif; ?>
             <?php foreach($muffins as $muffin): ?>
                 <tr>
                   <td class="border-0 align-middle"><strong>#<?=$muffin["muffin_id"]?></strong></td>
