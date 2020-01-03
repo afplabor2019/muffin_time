@@ -32,6 +32,20 @@ if(isset($_GET["insert_muffin"])){
   }
 }
 
+if(isset($_GET["update_muffin"])){
+  switch($_GET["update_muffin"]){
+    case "0":
+      echo display_error("Sikertelen adatmódosítás!");
+    break;
+    case "1":
+      echo display_success("Sikeres adatmódosítás!");
+    break;
+    default:
+      echo display_error("Sikertelen adatmódosítás!");
+    break;
+  }
+}
+
 $errors = [];
 
 $min_price = null;
