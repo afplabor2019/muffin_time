@@ -10,6 +10,9 @@ body{
     background-color: #f2f2f2;
     margin-bottom: 60px;
 }
+a{
+    text-decoration: none !important;
+}
 .footer {
     position: absolute;
     bottom: 0;
