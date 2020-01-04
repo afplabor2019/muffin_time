@@ -418,3 +418,61 @@ function delete_muffin($muffin_id){
 
     return $sql->execute();
 }
+
+function reset_password($email){
+    global $db;
+
+    if(check_email($email)){
+        $random_new_password = generate_random_password();
+        $password_hash = password_hash($random_new_password, PASSWORD_DEFAULT);
+    
+        $sql = $db->prepare("UPDATE users SET password = ? WHERE email = ?");
+        $sql->bind_param("ss", $password_hash, $email);
+    
+        $sql->execute();
+    
+        if($sql->affected_rows > 0){
+            if(send_reset_email($email, $random_new_password)){
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+    return false;
+}
+
+function generate_random_password(){
+    $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+    $pass = array();
+    $alphaLength = strlen($alphabet) - 1;
+    for ($i = 0; $i < 8; $i++) {
+        $n = rand(0, $alphaLength);
+        $pass[] = $alphabet[$n];
+    }
+    return implode($pass);
+}
+
+function send_reset_email($email, $password){
+    $to = $email;
+    $subject = "MuffinShop | Elfelejtett jelszó";
+    $headers = "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+
+    $message = 
+"
+Kedves felhasználónk!
+
+A MuffinShop weboldalán jelezted számunkra a jelszó helyreállítási kérelmedet.
+Ennek megfelelően küldjük Számodra az új jelszavad: <b>$password</b>
+Kérjük az első bejelentkezést követően változtasd meg a jelszavad a \"Beállítások\" menüpontban!
+
+Amennyiben a kérelmező nem Te voltál kérjük hagyd figyelmen kívül ezt az üzenetet, és változtasd meg a jelszavadat a webshopban.
+
+MuffinShop csapata
+";
+
+    $result = mail($to, $subject, $message, $headers);
+    
+    return $result;
+}
