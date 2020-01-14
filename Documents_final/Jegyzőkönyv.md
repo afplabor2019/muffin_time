@@ -37,7 +37,7 @@
 
 ​																	*Üdvözlés, rátérés a témára.*
 
-***Megrendelő:* **Mint már beszéltük email-ben és telefonon  egy cukrászda vállalkozást vezetek. Mára már annyira sok megrendelést kapunk, hogy nehéz rendszert tartani közöttük és már a vásárlók is panaszkodtak, hogy körülményes és időigényes  a rendelés felvételünk. Ezért szeretném felkérni az Önök cégét, hogy  egy  online  boltot készítsenek, ami megkönnyíti a rendelések felvételét, és esetlegesen a kiszállítást is.
+***Megrendelő:*** Mint már beszéltük email-ben és telefonon  egy cukrászda vállalkozást vezetek. Mára már annyira sok megrendelést kapunk, hogy nehéz rendszert tartani közöttük és már a vásárlók is panaszkodtak, hogy körülményes és időigényes  a rendelés felvételünk. Ezért szeretném felkérni az Önök cégét, hogy  egy  online  boltot készítsenek, ami megkönnyíti a rendelések felvételét, és esetlegesen a kiszállítást is.
 
 ***Fejlesztő:*** Hogyan szeretné , hogy működjenek ezek a pontok?
 
