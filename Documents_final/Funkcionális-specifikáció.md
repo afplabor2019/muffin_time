@@ -41,19 +41,6 @@ Aki az oldalt megnyitja , az szabadon böngészhet a kínálatok között, kül�
 -  A vállalkozás az általa kínált fizetési mód igénybevétele után fizetendő díjat meghaladó további díjat nem terheljenek a fogyasztókra.
 -  A webáruház üzemeltetője köteles gondoskodni arról, hogy a fogyasztó a szerződési nyilatkozatának megtételekor kifejezetten tudomásul vegye, hogy nyilatkozata fizetési kötelezettséget von maga után. 
 
-### **Képernyő tervek**
-
-Néhány kép a jelenlegi helyzet bemutatására.
-Bejelentkezés az oldalra:
-
-![login](C:\Users\Franci\Desktop\login.png)
-
-A főoldal:
-![home](C:\Users\Franci\Desktop\home.png)
-
-Regisztrációs oldal:
-![register](C:\Users\Franci\Desktop\register.png)
-
 
 
 ### **A prototípus bemutatása**
