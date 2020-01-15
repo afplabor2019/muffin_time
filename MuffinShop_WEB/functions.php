@@ -213,7 +213,7 @@ function filter_muffins($price_array){
         global $db;
 
         $jelszo_hash = password_hash($jelszo, PASSWORD_DEFAULT);
-        $sql = $db->prepare("INSERT INTO users (username, email, password, last_login) VALUES(?,?,?,null)");
+        $sql = $db->prepare("INSERT INTO users (username, email, password) VALUES(?,?,?)");
 
         $sql->bind_param("sss", $felhasznalonev, $email, $jelszo_hash);
         
