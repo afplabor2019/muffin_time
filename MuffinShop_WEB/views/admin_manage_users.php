@@ -12,6 +12,18 @@ if($userdata["role"] != "admin"){
 }
 
 $users = get_all_users();
+
+if(isset($_GET["action"]) && isset($_GET["user_id"])){
+    switch($_GET["action"]){
+        case "delete_user":
+            if(delete_user($userid)){
+                redirect('admin_manage_users', ['success' => 1]);
+            }else{
+                redirect('admin_manage_users', ['success' => 0]);
+            }
+        break;
+    }
+}
 ?>
 
 <div class="table-responsive">
@@ -45,7 +57,7 @@ $users = get_all_users();
                   <td class="border-0 align-middle"><?=$user["username"]?></td>
                   <td class="border-0 align-middle"><strong><?=$user["email"]?></strong></td>
                   <td class="border-0 align-middle"><strong><?=$user["role"]?></strong></td>
-                  <td class="border-0 align-middle"><a href="<?php echo url('admin_manage_users', ["action" => "edit_user", "user_id" => $user["user_id"]]); ?>"><i class="fas fa-pencil-alt"></i></a> &nbsp; <a href="<?php echo url('admin_manage_users', ["action" => "delete_user", "user_id" => $user['user_id']]); ?>"><i class="fa fa-trash"></i></a></td>
+                  <td class="border-0 align-middle"><a href="<?php echo url('admin_edit_user', ["user_id" => $user["user_id"]]); ?>"><i class="fas fa-pencil-alt"></i></a> &nbsp; <a href="<?php echo url('admin_manage_users', ["action" => "delete_user", "user_id" => $user['user_id']]); ?>"><i class="fa fa-trash"></i></a></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
