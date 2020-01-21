@@ -405,6 +405,18 @@ function filter_muffins($price_array){
         return $result;
     }
 
+    function get_user_by_id($userid){
+        global $db;
+        
+        $sql = $db->prepare("SELECT u.username, u.email, u.role, ud.zip, ud.city, ud.address, ud.extra, ud.phone FROM users u LEFT JOIN users_data ud ON u.user_id = ud.user_id WHERE u.user_id = ?");
+        $sql->bind_param("i", $userid);
+        $sql->execute();
+
+        $result = $sql->get_result()->fetch_assoc();
+
+        return $result;
+    }
+
     function delete_user($userid){
         global $db;
 
