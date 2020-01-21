@@ -30,8 +30,10 @@
           <?php if($userdata["role"] == "admin"): ?>
             <a class="dropdown-item" href="<?php echo url('admin_add_product'); ?>">Új termék felvitele</a>
             <a class="dropdown-item" href="<?php echo url('admin_list_products'); ?>">Termékek kezelése</a>
+            <div class="dropdown-divider"></div>
+            <a href="<?php echo url('admin_manage_users'); ?>" class="dropdown-item">Felhasználók kezelése</a>
+            <div class="dropdown-divider"></div>
           <?php endif; ?>
-          <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="<?php echo url('logout'); ?>">Kilépés</a>
         </div>
       </li>
