@@ -405,6 +405,15 @@ function filter_muffins($price_array){
         return $result;
     }
 
+    function delete_user($userid){
+        global $db;
+
+        $sql = $db->prepare("DELETE FROM users WHERE user_id = ?");
+        $sql->bind_param("i", $userid);
+        
+        return $sql->execute();
+    }
+
     //** RENDELÉSEKKEL KAPCSOLATOS METÓDUSOK */
     function place_order($userid, $order_date, $delivery_mode, $payment_method, $total, $comment){
         global $db;
