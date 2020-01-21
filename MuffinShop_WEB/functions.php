@@ -394,6 +394,16 @@ function filter_muffins($price_array){
         return $result;
     }
 
+    function get_all_users(){
+        global $db;
+
+        $sql = $db->prepare("SELECT user_id, username, email, role FROM users");
+        $sql->execute();
+
+        $result = $sql->get_result();
+
+        return $result;
+    }
 
     //** RENDELÉSEKKEL KAPCSOLATOS METÓDUSOK */
     function place_order($userid, $order_date, $delivery_mode, $payment_method, $total, $comment){
